@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Utils">
+      <UniqueIdentifier>{42a13b6c-7570-4bb8-a200-844c9561c5fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render">
+      <UniqueIdentifier>{cb49bbbf-b097-498f-a4d1-8e1c3040573a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Render\ShaderSources">
+      <UniqueIdentifier>{28b6515c-b320-4af1-9b57-6c598398c653}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{1b880801-71dd-41fa-92f1-e2ee86d2be5c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -21,8 +33,43 @@
     <ClCompile Include="..\thirdpart\src\glad.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Render\Shader.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Renderer.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\ShaderSources\ShaderSources.cpp">
+      <Filter>Render\ShaderSources</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\LogUtil.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.MD" />
+    <None Include="Render\ShaderSources\fragment_base.frag">
+      <Filter>Render\ShaderSources</Filter>
+    </None>
+    <None Include="Render\ShaderSources\vertex_base.vert">
+      <Filter>Render\ShaderSources</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Render\Shader.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Renderer.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\ShaderSources\ShaderSources.h">
+      <Filter>Render\ShaderSources</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\LogUtil.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\Singleton.h">
+      <Filter>Base</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

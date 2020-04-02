@@ -131,9 +131,22 @@
   <ItemGroup>
     <ClCompile Include="..\thirdpart\src\glad.c" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Render\Renderer.cpp" />
+    <ClCompile Include="Render\Shader.cpp" />
+    <ClCompile Include="Render\ShaderSources\ShaderSources.cpp" />
+    <ClCompile Include="Utils\LogUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.MD" />
+    <None Include="Render\ShaderSources\fragment_base.frag" />
+    <None Include="Render\ShaderSources\vertex_base.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Base\Singleton.h" />
+    <ClInclude Include="Render\Renderer.h" />
+    <ClInclude Include="Render\Shader.h" />
+    <ClInclude Include="Render\ShaderSources\ShaderSources.h" />
+    <ClInclude Include="Utils\LogUtil.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
