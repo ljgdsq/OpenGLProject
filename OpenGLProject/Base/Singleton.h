@@ -4,7 +4,7 @@ template<class T>
 class Singleton
 {
 public:
-    T* GetInstance();
+  static  T* GetInstance();
 };
 
 template<class T>

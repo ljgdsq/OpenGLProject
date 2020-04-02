@@ -25,6 +25,12 @@
     <Filter Include="Base">
       <UniqueIdentifier>{1b880801-71dd-41fa-92f1-e2ee86d2be5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Examples">
+      <UniqueIdentifier>{8e334036-f5e6-4f26-84e3-2db4f13e121c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tests">
+      <UniqueIdentifier>{2fdae149-23a6-472b-81a3-23a74f6872b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -44,6 +50,21 @@
     </ClCompile>
     <ClCompile Include="Utils\LogUtil.cpp">
       <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Triangle.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\FileUtil.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\InIReader.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\ProjetConfig.hpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\ColorTriangle.cpp">
+      <Filter>Examples</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +91,21 @@
     </ClInclude>
     <ClInclude Include="Base\Singleton.h">
       <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Triangle.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\FileUtil.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonHeader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\InIReader.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\ColorTriangle.h">
+      <Filter>Examples</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -83,6 +83,9 @@
       <AdditionalLibraryDirectories>../thirdpart/lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources" /D /E /I /F /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -112,6 +115,9 @@
       <AdditionalLibraryDirectories>../thirdpart/lib-vc2019;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources" /D /E /I /F /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -130,10 +136,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\thirdpart\src\glad.c" />
+    <ClCompile Include="Base\ProjetConfig.hpp" />
+    <ClCompile Include="Examples\ColorTriangle.cpp" />
+    <ClCompile Include="Examples\Triangle.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Render\Renderer.cpp" />
     <ClCompile Include="Render\Shader.cpp" />
     <ClCompile Include="Render\ShaderSources\ShaderSources.cpp" />
+    <ClCompile Include="Utils\FileUtil.cpp" />
+    <ClCompile Include="Utils\InIReader.cpp" />
     <ClCompile Include="Utils\LogUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -143,9 +154,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base\Singleton.h" />
+    <ClInclude Include="CommonHeader.h" />
+    <ClInclude Include="Examples\ColorTriangle.h" />
+    <ClInclude Include="Examples\Triangle.h" />
     <ClInclude Include="Render\Renderer.h" />
     <ClInclude Include="Render\Shader.h" />
     <ClInclude Include="Render\ShaderSources\ShaderSources.h" />
+    <ClInclude Include="Utils\FileUtil.h" />
+    <ClInclude Include="Utils\InIReader.h" />
     <ClInclude Include="Utils\LogUtil.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
