@@ -64,14 +64,9 @@ int main(int argc,char**argv)
     //logUtil->Warn("some warn");
     //logUtil->Info("some info");
     //Renderer* triangle = new Triangle();
-    Shader* shader = new Shader();
 
-    auto fragSource=FileUtil::GetInstance()->LoadFromProjectResource("fragment_00.frag");
-    auto vertSource=FileUtil::GetInstance()->LoadFromProjectResource("vertex_00.vert");
-
-    shader->CreateShaderProgram(vertSource.c_str(), fragSource.c_str());
-    Renderer* triangle = new ColorTriangle(shader);
-    
+  
+    Renderer* triangle = new ColorTriangle();
 
 
     while (!glfwWindowShouldClose(window))
@@ -81,11 +76,8 @@ int main(int argc,char**argv)
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        float timeValue = (float)glfwGetTime();
-        float greenValue = sin(timeValue) / 2.0f + 0.5f;
-
         triangle->Draw();
-        shader->SetVec4f("ourColor", 0.3f,greenValue,0.6f,0.8f);
+
         glfwSwapBuffers(window);
         glfwPollEvents();
     }

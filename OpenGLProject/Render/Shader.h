@@ -8,7 +8,7 @@ class Shader
 {
 public:
     static int INVALID_SHADER;
-    Shader(const char* vertexShaderSource, const char* fragmentShaderSource, bool needDeleteAfterCompile = false);
+    Shader(const char* vertexShaderSource, const char* fragmentShaderSource, bool needDeleteAfterCompile = true);
     Shader();
 
     int GetShaderProgram();

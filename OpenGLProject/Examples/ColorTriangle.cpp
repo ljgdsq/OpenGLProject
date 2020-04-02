@@ -1,9 +1,14 @@
 #include "ColorTriangle.h"
+#include <GLFW/glfw3.h>
 
 void ColorTriangle::Draw()
 {
     glUseProgram(shader->GetShaderProgram());
     glBindVertexArray(VAO);
+
+    float timeValue = (float)glfwGetTime();
+    float greenValue =(float) sin(timeValue) / 2.0f + 0.5f;
+    shader->SetVec4f("ourColor", 0.3f, greenValue, 0.6f, 0.8f);
     glDrawArrays(GL_TRIANGLES, 0,3);
 }
 
@@ -34,4 +39,12 @@ void ColorTriangle::InitData()
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
+}
+
+ColorTriangle::ColorTriangle():Renderer(new Shader())
+{
+    InitData();
+    auto fragSource = FileUtil::GetInstance()->LoadFromProjectResource("fragment_00.frag");
+    auto vertSource = FileUtil::GetInstance()->LoadFromProjectResource("vertex_00.vert");
+    shader->CreateShaderProgram(vertSource.c_str(), fragSource.c_str());
 }

@@ -20,7 +20,7 @@ Shader::Shader()
     vertexShader = INVALID_SHADER;
     fragmentShader = INVALID_SHADER;
     shaderProgram = INVALID_SHADER;
-    this->needDeleteAfterCompile = false;
+    this->needDeleteAfterCompile = true;
 }
 
 int Shader::GetShaderProgram()

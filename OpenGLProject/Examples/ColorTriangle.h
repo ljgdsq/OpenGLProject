@@ -7,5 +7,7 @@ public:
     virtual void Draw() override;
     ColorTriangle(Shader*shader);
     void InitData();
+
+    ColorTriangle();
 };
 
