@@ -8,6 +8,7 @@ class Renderer
 public:
     Renderer(Shader* shader);
     virtual void Draw();
+    virtual void InitData();
     virtual ~Renderer();
 protected:
     unsigned int VAO;

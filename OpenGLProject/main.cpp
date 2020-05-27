@@ -7,7 +7,9 @@
 #include "Examples/Triangle.h"
 #include "Examples/ColorTriangle.h"
 #include "Base/ProjetConfig.hpp"
-
+#include "Examples/Ex1_1.h"
+#include "Examples/Ex2_1.h"
+#include "Examples/Ex2_2.h"
 using namespace std;
 
 
@@ -31,6 +33,7 @@ int main(int argc,char**argv)
     ProjectConfig::GetInstance()->SetExecutePath(argv[0]);
     LogUtil::GetInstance()->Verbose("Dir:"+ ProjectConfig::GetInstance()->GetExecutePath());
 
+    auto u=new LogUtil();
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -66,9 +69,11 @@ int main(int argc,char**argv)
     //Renderer* triangle = new Triangle();
 
   
-    Renderer* triangle = new ColorTriangle();
+    //Renderer* triangle = new ColorTriangle();
 
-
+   // Renderer* render = new Ex1_1();
+    //Renderer* render = new Ex2_1();
+    Renderer* render = new Ex2_2();
     while (!glfwWindowShouldClose(window))
     {
         processInput(window);
@@ -76,7 +81,7 @@ int main(int argc,char**argv)
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        triangle->Draw();
+        render->Draw();
 
         glfwSwapBuffers(window);
         glfwPollEvents();

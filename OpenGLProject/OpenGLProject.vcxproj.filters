@@ -45,9 +45,6 @@
     <ClCompile Include="Render\Renderer.cpp">
       <Filter>Render</Filter>
     </ClCompile>
-    <ClCompile Include="Render\ShaderSources\ShaderSources.cpp">
-      <Filter>Render\ShaderSources</Filter>
-    </ClCompile>
     <ClCompile Include="Utils\LogUtil.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
@@ -66,13 +63,34 @@
     <ClCompile Include="Examples\ColorTriangle.cpp">
       <Filter>Examples</Filter>
     </ClCompile>
+    <ClCompile Include="Examples\Ex1_1.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Ex2_1.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\TestLog.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\ShaderSources\ShaderSources.cpp">
+      <Filter>Render\ShaderSources</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Ex2_2.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.MD" />
     <None Include="Render\ShaderSources\fragment_base.frag">
       <Filter>Render\ShaderSources</Filter>
     </None>
+    <None Include="Render\ShaderSources\fragment_pcolor.frag">
+      <Filter>Render\ShaderSources</Filter>
+    </None>
     <None Include="Render\ShaderSources\vertex_base.vert">
+      <Filter>Render\ShaderSources</Filter>
+    </None>
+    <None Include="Render\ShaderSources\vertex_pcolor.vert">
       <Filter>Render\ShaderSources</Filter>
     </None>
   </ItemGroup>
@@ -82,9 +100,6 @@
     </ClInclude>
     <ClInclude Include="Render\Renderer.h">
       <Filter>Render</Filter>
-    </ClInclude>
-    <ClInclude Include="Render\ShaderSources\ShaderSources.h">
-      <Filter>Render\ShaderSources</Filter>
     </ClInclude>
     <ClInclude Include="Utils\LogUtil.h">
       <Filter>Utils</Filter>
@@ -105,6 +120,27 @@
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="Examples\ColorTriangle.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Macro.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Ex1_1.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\GLEnvInfo.hpp">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="GLEnvHeader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Ex2_1.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\ShaderSources\ShaderSources.h">
+      <Filter>Render\ShaderSources</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Ex2_2.h">
       <Filter>Examples</Filter>
     </ClInclude>
   </ItemGroup>

@@ -44,7 +44,7 @@ void ColorTriangle::InitData()
 ColorTriangle::ColorTriangle():Renderer(new Shader())
 {
     InitData();
-    auto fragSource = FileUtil::GetInstance()->LoadFromProjectResource("fragment_00.frag");
-    auto vertSource = FileUtil::GetInstance()->LoadFromProjectResource("vertex_00.vert");
+    auto fragSource = FileUtil::GetInstance()->LoadStringFromProjectResource("fragment_00.frag");
+    auto vertSource = FileUtil::GetInstance()->LoadStringFromProjectResource("vertex_00.vert");
     shader->CreateShaderProgram(vertSource.c_str(), fragSource.c_str());
 }

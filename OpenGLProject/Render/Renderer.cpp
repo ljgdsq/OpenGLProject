@@ -6,11 +6,15 @@ Renderer::Renderer(Shader* shader)
     VBO = 0;
     EBO = 0;
     this->shader = shader;
+
 }
 
 void Renderer::Draw()
 {
+}
 
+void Renderer::InitData()
+{
 }
 
 Renderer::~Renderer()

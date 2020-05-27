@@ -1,16 +1,28 @@
 #include "Triangle.h"
 
-void Triangle::InitDrawData()
+Triangle::Triangle():Renderer(new Shader(vertex_shader_0,fragment_shader_0))
+{
+    InitData();
+}
+
+void Triangle::Draw()
+{
+    glUseProgram(shader->GetShaderProgram());
+    glBindVertexArray(VAO); 
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+}
+
+void Triangle::InitData()
 {
     float vertices[] = {
-        0.5f,  0.5f, 0.0f,  
-        0.5f, -0.5f, 0.0f,  
-       -0.5f, -0.5f, 0.0f,  
-       -0.5f,  0.5f, 0.0f   
+       0.5f,  0.5f, 0.0f,
+       0.5f, -0.5f, 0.0f,
+      -0.5f, -0.5f, 0.0f,
+      -0.5f,  0.5f, 0.0f
     };
-    unsigned int indices[] = { 
-        0, 1, 3,  
-        1, 2, 3  
+    unsigned int indices[] = {
+        0, 1, 3,
+        1, 2, 3
     };
 
     glGenVertexArrays(1, &VAO);
@@ -29,17 +41,4 @@ void Triangle::InitDrawData()
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
-
-}
-
-Triangle::Triangle():Renderer(new Shader(vertex_shader_0,fragment_shader_0))
-{
-    InitDrawData();
-}
-
-void Triangle::Draw()
-{
-    glUseProgram(shader->GetShaderProgram());
-    glBindVertexArray(VAO); 
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }

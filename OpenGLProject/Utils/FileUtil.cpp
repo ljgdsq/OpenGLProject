@@ -4,7 +4,7 @@
 #include "../Base/ProjetConfig.hpp"
 using namespace std;
 
-std::string FileUtil::LoadFromFile(std::string path)
+std::string FileUtil::LoadStringFromFile(std::string path)
 {
     std::string str;
     std::ifstream ifs;
@@ -26,9 +26,9 @@ std::string FileUtil::LoadFromFile(std::string path)
     return str;
 }
 
-std::string FileUtil::LoadFromProjectResource(std::string name)
+std::string FileUtil::LoadStringFromProjectResource(std::string name)
 {
-    return LoadFromFile(GetResourceFullPath(name));
+    return LoadStringFromFile(GetResourceFullPath(name));
 }
 
 std::string FileUtil::GetResourceFullPath(std::string name)

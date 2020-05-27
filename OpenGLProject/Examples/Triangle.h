@@ -4,9 +4,13 @@
 class Triangle:public Renderer
 {
 public:
-    void InitDrawData();
     Triangle();
 
     void Draw() override;
+
+
+    // Inherited via Renderer
+    virtual void InitData() override;
+
 };
 

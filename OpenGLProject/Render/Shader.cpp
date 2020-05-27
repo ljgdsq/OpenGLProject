@@ -83,6 +83,8 @@ void Shader::CreateShaderProgram(const char* vertexShaderSource, const char* fra
     {
         glDeleteShader(vertexShader);
         glDeleteShader(fragmentShader);
+        vertexShader = INVALID_SHADER;
+        fragmentShader = INVALID_SHADER;
     }
 
 }
@@ -94,12 +96,24 @@ void Shader::CreateShaderProgramFromFile(const char* vPath, const char* fPath)
         LogUtil::GetInstance()->Warn("you already have a shader program do not create again!");
         return;
     }
-    auto vSource=FileUtil::GetInstance()->LoadFromFile(vPath);
-    auto fSource=FileUtil::GetInstance()->LoadFromFile(fPath);
+    auto vSource=FileUtil::GetInstance()->LoadStringFromFile(vPath);
+    auto fSource=FileUtil::GetInstance()->LoadStringFromFile(fPath);
     CreateShaderProgram(vSource.c_str(), fSource.c_str());
 }
 
-void Shader::SetBool(const std::string name, bool value) 
+void Shader::CreateShaderProgramFromResource(const char* vertexShaderName, const char* fragmentShaderName)
+{
+    auto vSource = FileUtil::GetInstance()->LoadStringFromProjectResource(vertexShaderName);
+    auto fSource = FileUtil::GetInstance()->LoadStringFromProjectResource(fragmentShaderName);
+    CreateShaderProgram(vSource.c_str(), fSource.c_str());
+}
+
+void Shader::Use()
+{
+    glUseProgram(GetShaderProgram());
+}
+
+void Shader::SetBool(const std::string name, bool value)
 {
     glUniform1i(glGetUniformLocation(GetShaderProgram(), name.c_str()), (int)value);
 }
@@ -114,6 +128,11 @@ void Shader::SetFloat(const std::string name, float value)
 {
     glUniform1f(glGetUniformLocation(GetShaderProgram(), name.c_str()), value);
 
+}
+
+void Shader::SetVec3f(const std::string name, float x, float y, float z)
+{
+    glUniform3f(glGetUniformLocation(GetShaderProgram(), name.c_str()), x, y, z);
 }
 
 void Shader::SetVec4f(const std::string name, float x, float y, float z, float w)

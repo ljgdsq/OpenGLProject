@@ -1,4 +1,5 @@
 #pragma once
+#include "../Macro.h"
 
 template<class T>
 class Singleton
@@ -13,3 +14,4 @@ inline T* Singleton<T>::GetInstance()
     static T instance;
     return &instance;
 }
+

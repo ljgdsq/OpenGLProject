@@ -138,6 +138,10 @@
     <ClCompile Include="..\thirdpart\src\glad.c" />
     <ClCompile Include="Base\ProjetConfig.hpp" />
     <ClCompile Include="Examples\ColorTriangle.cpp" />
+    <ClCompile Include="Examples\Ex1_1.cpp" />
+    <ClCompile Include="Examples\Ex2_1.cpp" />
+    <ClCompile Include="Examples\Ex2_2.cpp" />
+    <ClCompile Include="Examples\TestLog.cpp" />
     <ClCompile Include="Examples\Triangle.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Render\Renderer.cpp" />
@@ -150,17 +154,25 @@
   <ItemGroup>
     <None Include="README.MD" />
     <None Include="Render\ShaderSources\fragment_base.frag" />
+    <None Include="Render\ShaderSources\fragment_pcolor.frag" />
     <None Include="Render\ShaderSources\vertex_base.vert" />
+    <None Include="Render\ShaderSources\vertex_pcolor.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Base\Singleton.h" />
     <ClInclude Include="CommonHeader.h" />
     <ClInclude Include="Examples\ColorTriangle.h" />
+    <ClInclude Include="Examples\Ex1_1.h" />
+    <ClInclude Include="Examples\Ex2_1.h" />
+    <ClInclude Include="Examples\Ex2_2.h" />
     <ClInclude Include="Examples\Triangle.h" />
+    <ClInclude Include="GLEnvHeader.h" />
+    <ClInclude Include="Macro.h" />
     <ClInclude Include="Render\Renderer.h" />
     <ClInclude Include="Render\Shader.h" />
     <ClInclude Include="Render\ShaderSources\ShaderSources.h" />
     <ClInclude Include="Utils\FileUtil.h" />
+    <ClInclude Include="Utils\GLEnvInfo.hpp" />
     <ClInclude Include="Utils\InIReader.h" />
     <ClInclude Include="Utils\LogUtil.h" />
   </ItemGroup>
