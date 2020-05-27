@@ -31,6 +31,9 @@
     <Filter Include="Tests">
       <UniqueIdentifier>{2fdae149-23a6-472b-81a3-23a74f6872b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{efd6b8c9-4a73-474b-861f-6a28ea4950ec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -78,6 +81,18 @@
     <ClCompile Include="Examples\Ex2_2.cpp">
       <Filter>Examples</Filter>
     </ClCompile>
+    <ClCompile Include="Base\ResourceLoader.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Image.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Ex3_1.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Ex3_2.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.MD" />
@@ -91,6 +106,12 @@
       <Filter>Render\ShaderSources</Filter>
     </None>
     <None Include="Render\ShaderSources\vertex_pcolor.vert">
+      <Filter>Render\ShaderSources</Filter>
+    </None>
+    <None Include="Render\ShaderSources\fragment_pcolor_tex.frag">
+      <Filter>Render\ShaderSources</Filter>
+    </None>
+    <None Include="Render\ShaderSources\vertex_pcolor_tex.vert">
       <Filter>Render\ShaderSources</Filter>
     </None>
   </ItemGroup>
@@ -141,6 +162,18 @@
       <Filter>Render\ShaderSources</Filter>
     </ClInclude>
     <ClInclude Include="Examples\Ex2_2.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\ResourceLoader.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Image.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Ex3_1.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Ex3_2.h">
       <Filter>Examples</Filter>
     </ClInclude>
   </ItemGroup>

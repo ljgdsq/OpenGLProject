@@ -1,16 +1,24 @@
 #include "Renderer.h"
 
+Renderer::Renderer()
+{
+    VAO = 0;
+    VBO = 0;
+    EBO = 0;
+    this->shader = new Shader();
+}
+
 Renderer::Renderer(Shader* shader)
 {
     VAO = 0;
     VBO = 0;
     EBO = 0;
     this->shader = shader;
-
 }
 
 void Renderer::Draw()
 {
+
 }
 
 void Renderer::InitData()

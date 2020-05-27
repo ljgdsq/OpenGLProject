@@ -10,6 +10,8 @@
 #include "Examples/Ex1_1.h"
 #include "Examples/Ex2_1.h"
 #include "Examples/Ex2_2.h"
+#include "Examples/Ex3_1.h"
+#include "Examples/Ex3_2.h"
 using namespace std;
 
 
@@ -73,7 +75,9 @@ int main(int argc,char**argv)
 
    // Renderer* render = new Ex1_1();
     //Renderer* render = new Ex2_1();
-    Renderer* render = new Ex2_2();
+    //Renderer* render = new Ex2_2();
+   // Renderer* render = new Ex3_1();
+    Renderer* render = new Ex3_2();
     while (!glfwWindowShouldClose(window))
     {
         processInput(window);

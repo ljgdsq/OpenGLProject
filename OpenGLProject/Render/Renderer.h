@@ -6,6 +6,7 @@ class Renderer
 {
 
 public:
+    Renderer();
     Renderer(Shader* shader);
     virtual void Draw();
     virtual void InitData();
