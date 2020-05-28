@@ -1,6 +1,6 @@
 #include "Singleton.h"
 #include <string>
-
+#include "BaseStruct.hpp"
 class ProjectConfig :public Singleton<ProjectConfig> {
 public:
     void SetExecutePath(std::string exePath) {
@@ -23,7 +23,15 @@ public:
         return executePath;
     }
 
+    void SetWindowSize(Size size) {
+        windowSize = size;
+    }
 
+    Size GetWindowSize() {
+        return windowSize;
+    }
+ 
 private:
     std::string  executePath;
+    Size windowSize;
 };

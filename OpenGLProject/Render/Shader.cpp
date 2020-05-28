@@ -3,6 +3,7 @@
 #include "../Utils/LogUtil.h"
 #include "../Utils/FileUtil.h"
 
+#include <glm/gtc/type_ptr.hpp>
 int Shader::INVALID_SHADER = -1;
 
 Shader::Shader(const char* vertexShaderSource, const char* fragmentShaderSource, bool needDeleteAfterCompile)
@@ -138,4 +139,9 @@ void Shader::SetVec3f(const std::string name, float x, float y, float z)
 void Shader::SetVec4f(const std::string name, float x, float y, float z, float w)
 {
     glUniform4f(glGetUniformLocation(GetShaderProgram(), name.c_str()), x, y, z, w);
+}
+
+void Shader::SetMat4f(const std::string name, glm::mat4x4 mat)
+{
+    glUniformMatrix4fv(glGetUniformLocation(GetShaderProgram(), name.c_str()), 1, GL_FALSE, glm::value_ptr(mat));
 }

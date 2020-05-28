@@ -176,5 +176,8 @@
     <ClInclude Include="Examples\Ex3_2.h">
       <Filter>Examples</Filter>
     </ClInclude>
+    <ClInclude Include="Base\BaseStruct.hpp">
+      <Filter>Base</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

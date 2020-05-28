@@ -3,7 +3,7 @@
 #include <glad/glad.h>
 #include <string>
 
-
+#include <glm/glm.hpp>
 class Shader
 {
 public:
@@ -28,5 +28,7 @@ public:
 
     void SetVec3f(const std::string name, float x, float y, float z);
     void SetVec4f(const std::string name, float x, float y, float z, float w);
+
+    void SetMat4f(const std::string name, glm::mat4x4 mat);
 };
 

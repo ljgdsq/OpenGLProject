@@ -33,6 +33,10 @@ int main(int argc,char**argv)
     const int width = 800;
     const int height = 600;
     ProjectConfig::GetInstance()->SetExecutePath(argv[0]);
+    Size size;
+    size.x = 800;
+    size.y = 600;
+    ProjectConfig::GetInstance()->SetWindowSize(size);
     LogUtil::GetInstance()->Verbose("Dir:"+ ProjectConfig::GetInstance()->GetExecutePath());
 
     auto u=new LogUtil();
@@ -44,7 +48,7 @@ int main(int argc,char**argv)
 #ifdef __APPLE__
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this statement to fix compilation on OS X
 #endif
-
+    
     GLFWwindow* window = glfwCreateWindow(width, height, title, nullptr, nullptr);
     if (window == nullptr)
     {
@@ -77,14 +81,16 @@ int main(int argc,char**argv)
     //Renderer* render = new Ex2_1();
     //Renderer* render = new Ex2_2();
    // Renderer* render = new Ex3_1();
+    glEnable(GL_DEPTH_TEST);
     Renderer* render = new Ex3_2();
     while (!glfwWindowShouldClose(window))
     {
         processInput(window);
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
-
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+       //glClear(GL_COLOR_BUFFER_BIT);
+    
         render->Draw();
 
         glfwSwapBuffers(window);

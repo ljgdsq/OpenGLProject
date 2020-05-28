@@ -1,29 +1,95 @@
 #include "Ex3_2.h"
 #include "../Base/ResourceLoader.h"
-
+#include "../Base/ProjetConfig.hpp"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <GLFW/glfw3.h>
 void Ex3_2::Draw()
 {
 
-   
+    float time = (float)glfwGetTime();
+    //glm::mat4 trans(1.0f);
 
+    //trans = glm::translate(trans, glm::vec3(0.5f,-0.5,0));
+    //trans = glm::rotate(trans, glm::radians(time)*60, glm::vec3(1,0,0));
+    //shader->SetMat4f("tranform", trans);
+    glm::mat4 model(1.0f);
+
+
+    model = glm::rotate(model, glm::radians(time) * 30, glm::vec3(0, 1.0f, 0));
+    shader->SetMat4f("model", model);
 
     glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
+
+    model = glm::mat4(1.0f);
+    model = glm::translate(model, glm::vec3(0.2f, 0, 0));
+    model = glm::scale(model, glm::vec3(0.8f, 0.8f, 1.0f));
+    model = glm::rotate(model, glm::radians(time)*30, glm::vec3(1.0f, 0, 0));
+    shader->SetMat4f("model", model);
+
+    //glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    glDrawArrays(GL_TRIANGLES, 0, 36);
+
+
 }
 
 void Ex3_2::InitData()
 {
-
-    shader->CreateShaderProgramFromResource("vertex_pcolor_tex.vert", "fragment_pcolor_tex.frag");
-    float texScale = 0.2f;
+    winSize = ProjectConfig::GetInstance()->GetWindowSize();
+    shader->CreateShaderProgram(vertex_shader_pcolor_tex_mvp, fragment_shader_pcolor_tex);
+   // shader->CreateShaderProgramFromResource("vertex_pcolor_tex_m.vert", "fragment_pcolor_tex.frag");
+    //shader->CreateShaderProgramFromResource("vertex_pcolor_tex.vert", "fragment_pcolor_tex.frag");
+    float texScale = 1.0f;
+    //float vertices[] = {
+    //    //     ---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -
+    //         0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 1.0f,   1.0f*texScale, 1.0f * texScale,   // 右上
+    //         0.5f, -0.5f, 0.0f,   1.0f, 1.0f, 1.0f,   1.0f * texScale, 0.0f * texScale,   // 右下
+    //        -0.5f, -0.5f, 0.0f,   1.0f, 1.0f, 1.0f,   0.0f * texScale, 0.0f * texScale,   // 左下
+    //        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 1.0f,   0.0f * texScale, 1.0f * texScale    // 左上
+    //};
     float vertices[] = {
-        //     ---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -
-             0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 1.0f,   1.0f*texScale, 1.0f * texScale,   // 右上
-             0.5f, -0.5f, 0.0f,   1.0f, 1.0f, 1.0f,   1.0f * texScale, 0.0f * texScale,   // 右下
-            -0.5f, -0.5f, 0.0f,   1.0f, 1.0f, 1.0f,   0.0f * texScale, 0.0f * texScale,   // 左下
-            -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 1.0f,   0.0f * texScale, 1.0f * texScale    // 左上
+    -0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+     0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+     0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+    -0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+    -0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+     0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+    -0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+     0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+     0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+     0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+     0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+     0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+    -0.5f, -0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+    -0.5f, -0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+    -0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+     0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f
     };
-
     unsigned int indices[] = {
     0, 1, 3, // first triangle
     1, 2, 3  // second triangle
@@ -68,6 +134,23 @@ void Ex3_2::InitData()
     shader->SetInt("ourTexture1", 0);
     shader->SetInt("ourTexture2", 1);
     shader->SetFloat("mixPercent", 0.2f);
+
+    glm::mat4 trans(1.0f);
+
+    trans = glm::translate(trans, glm::vec3(0.5f,0,0));
+    trans = glm::scale(trans, glm::vec3(0.5,0.5f,1));
+    trans = glm::rotate(trans, glm::radians(90.0f),glm::vec3(0,0,1));
+    glm::mat4 projection = glm::mat4(1.0f);
+    projection = glm::perspective(glm::radians(60.0f), winSize.x * 1.0f / winSize.y, 1.0f, 100.0f);
+
+   // glm::mat4 projection = glm::mat4(1.0f);
+    //projection = glm::perspective(glm::radians(45.0f), (float)winSize.x / (float)winSize.y, 0.1f, 100.0f);
+   
+    shader->SetMat4f("projection", projection);
+
+    glm::mat4 view(1.0f);
+    view = glm::translate(view, glm::vec3(0, 0, -3.0f));
+    shader->SetMat4f("view", view);
 }
 
 Ex3_2::Ex3_2():Renderer()

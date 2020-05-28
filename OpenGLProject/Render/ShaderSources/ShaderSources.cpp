@@ -9,3 +9,5 @@
 
 #include "vertex_pcolor_tex.vert"
 #include "fragment_pcolor_tex.frag"
+
+#include "vertex_pcolor_tex_mvp.vert"
