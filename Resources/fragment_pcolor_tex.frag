@@ -8,5 +8,5 @@
     uniform float mixPercent;
 	void main()
 	{
-		FragColor=vec4(FragCol,1.0)*mix(texture(ourTexture1,TexCoord),texture(ourTexture2,TexCoord*2),mixPercent);
+		FragColor=vec4(FragCol,1.0)*mix(texture(ourTexture1,TexCoord),texture(ourTexture2,TexCoord),mixPercent);
 	}
