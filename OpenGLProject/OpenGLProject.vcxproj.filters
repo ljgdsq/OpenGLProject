@@ -93,6 +93,9 @@
     <ClCompile Include="Examples\Ex3_2.cpp">
       <Filter>Examples</Filter>
     </ClCompile>
+    <ClCompile Include="Examples\FaceBox.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.MD" />
@@ -112,6 +115,15 @@
       <Filter>Render\ShaderSources</Filter>
     </None>
     <None Include="Render\ShaderSources\vertex_pcolor_tex.vert">
+      <Filter>Render\ShaderSources</Filter>
+    </None>
+    <None Include="Render\ShaderSources\fragment_base_tex2.frag">
+      <Filter>Render\ShaderSources</Filter>
+    </None>
+    <None Include="Render\ShaderSources\vertex_base_tex_mvp.vert">
+      <Filter>Render\ShaderSources</Filter>
+    </None>
+    <None Include="Render\ShaderSources\vertex_pcolor_tex_mvp.vert">
       <Filter>Render\ShaderSources</Filter>
     </None>
   </ItemGroup>
@@ -178,6 +190,18 @@
     </ClInclude>
     <ClInclude Include="Base\BaseStruct.hpp">
       <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\FaceBox.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\Camera.hpp">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\ProjetInit.hpp">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\StringUtil.hpp">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

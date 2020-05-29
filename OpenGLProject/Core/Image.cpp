@@ -47,6 +47,7 @@ void Image::GenTexture()
         if (releaseData)
         {
             free(this->data);
+            this->data = nullptr;
         }
     }
 }

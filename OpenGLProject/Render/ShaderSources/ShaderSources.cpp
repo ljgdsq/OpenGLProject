@@ -11,3 +11,6 @@
 #include "fragment_pcolor_tex.frag"
 
 #include "vertex_pcolor_tex_mvp.vert"
+
+#include "vertex_base_tex_mvp.vert"
+#include "fragment_base_tex2.frag"

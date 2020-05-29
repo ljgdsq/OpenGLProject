@@ -1,4 +1,5 @@
 #pragma once
+#include "../Utils/LogUtil.h"
 #include "../GLEnvHeader.h"
 class Image
 {
@@ -44,7 +45,13 @@ public:
         return channel;
     }
 
-    inline int GetTexture() const {
+     int GetTexture()  {
+        
+         if (texture == GL_INVALID_VALUE) {
+
+             GenTexture();
+             LogUtil::GetInstance()->Warn("you need call GenTexture first!");
+         }
         return texture;
     }
 
