@@ -1,6 +1,6 @@
 #pragma once
 #include "Singleton.h"
-#include "../Core/Image.h"
+#include "../Base/Image.h"
 class ResourceLoader:public Singleton<ResourceLoader>
 {
 public:

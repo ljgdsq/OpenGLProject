@@ -130,8 +130,8 @@ void FaceBox::Draw2(glm::mat4 view,float zoom)
 
     float radius = 10.0f;
 
-    float camX = sin(glfwGetTime()) * radius;
-    float camZ = cos(glfwGetTime()) * radius;
+    float camX = (float)sin(glfwGetTime()) * radius;
+    float camZ = (float)cos(glfwGetTime()) * radius;
 
     shader->SetMat4f("view", view);
     float time = (float)glfwGetTime();

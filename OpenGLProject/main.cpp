@@ -6,6 +6,7 @@
 #include "Utils/LogUtil.h"
 #include "Utils/StringUtil.hpp"
 #include "Base/Camera.hpp"
+#include "Base/CompGlfwImpl/GLFWTimer.h"
 
 #include "Examples/Triangle.h"
 #include "Examples/ColorTriangle.h"
@@ -19,10 +20,12 @@
 
 using namespace std;
 
+ITimer* timer=GLFWTimer::GetInstance();
+
 float deltaTime = 0;
 float lastTime = 0;
-float lastX = 0;
-float lastY = 0;
+double lastX = 0;
+double lastY = 0;
 bool isFirst = true;
 Camera* camera = new Camera(glm::vec3(0,0,3));
 
@@ -61,18 +64,18 @@ void mouse_callback(GLFWwindow* window, double x, double y)
         lastY = y;
     }
 
-    float xOffset = x - lastX;
-    float yOffset = y - lastY;
+    double xOffset = x - lastX;
+    double yOffset = y - lastY;
 
     lastX = x;
     lastY = y;
-    LogUtil::GetInstance()->Info(toString(xOffset));
-    camera->ProcessMouseMove(xOffset, yOffset);
+   // LogUtil::GetInstance()->Info(toString(xOffset));
+    camera->ProcessMouseMove((float)xOffset, (float)yOffset);
 }
 
 void mouse_scroll(GLFWwindow* window, double x, double y)
 {
-    camera->ProcessMouseScroll(y);
+    camera->ProcessMouseScroll((float)y);
     LogUtil::GetInstance()->Info(toString(y));
 }
 
@@ -140,9 +143,10 @@ int main(int argc,char**argv)
     glEnable(GL_DEPTH_TEST);
     while (!glfwWindowShouldClose(window))
     {
-        float time =(float) glfwGetTime();
-        deltaTime = time - lastTime;
-        lastTime = time;
+        timer->Tick();
+
+        deltaTime = timer->GetDeltaTime();
+
 
         processInput(window);
 

@@ -28,11 +28,11 @@
     <Filter Include="Examples">
       <UniqueIdentifier>{8e334036-f5e6-4f26-84e3-2db4f13e121c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Tests">
-      <UniqueIdentifier>{2fdae149-23a6-472b-81a3-23a74f6872b7}</UniqueIdentifier>
+    <Filter Include="Base\interface">
+      <UniqueIdentifier>{ba657717-2601-4b33-a359-abc67632263a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core">
-      <UniqueIdentifier>{efd6b8c9-4a73-474b-861f-6a28ea4950ec}</UniqueIdentifier>
+    <Filter Include="Base\CompGlfwImpl">
+      <UniqueIdentifier>{1cded8f4-35df-4fb8-9bf7-6b5190c97b2c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -57,9 +57,6 @@
     <ClCompile Include="Utils\FileUtil.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Utils\InIReader.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
     <ClCompile Include="Base\ProjetConfig.hpp">
       <Filter>Base</Filter>
     </ClCompile>
@@ -72,9 +69,6 @@
     <ClCompile Include="Examples\Ex2_1.cpp">
       <Filter>Examples</Filter>
     </ClCompile>
-    <ClCompile Include="Examples\TestLog.cpp">
-      <Filter>Examples</Filter>
-    </ClCompile>
     <ClCompile Include="Render\ShaderSources\ShaderSources.cpp">
       <Filter>Render\ShaderSources</Filter>
     </ClCompile>
@@ -84,9 +78,6 @@
     <ClCompile Include="Base\ResourceLoader.cpp">
       <Filter>Base</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Image.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="Examples\Ex3_1.cpp">
       <Filter>Examples</Filter>
     </ClCompile>
@@ -95,6 +86,15 @@
     </ClCompile>
     <ClCompile Include="Examples\FaceBox.cpp">
       <Filter>Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\Image.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\CompGlfwImpl\GLFWTimer.cpp">
+      <Filter>Base\CompGlfwImpl</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\CompGlfwImpl\GLFWInputController.cpp">
+      <Filter>Base\CompGlfwImpl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -149,9 +149,6 @@
     <ClInclude Include="CommonHeader.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Utils\InIReader.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
     <ClInclude Include="Examples\ColorTriangle.h">
       <Filter>Examples</Filter>
     </ClInclude>
@@ -179,9 +176,6 @@
     <ClInclude Include="Base\ResourceLoader.h">
       <Filter>Base</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Image.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Examples\Ex3_1.h">
       <Filter>Examples</Filter>
     </ClInclude>
@@ -202,6 +196,21 @@
     </ClInclude>
     <ClInclude Include="Utils\StringUtil.hpp">
       <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\Image.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\interface\ITimer.h">
+      <Filter>Base\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\AbstractInputController.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\CompGlfwImpl\GLFWTimer.h">
+      <Filter>Base\CompGlfwImpl</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\CompGlfwImpl\GLFWInputController.h">
+      <Filter>Base\CompGlfwImpl</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
