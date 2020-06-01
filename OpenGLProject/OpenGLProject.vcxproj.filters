@@ -102,6 +102,9 @@
     <ClCompile Include="Base\World.cpp">
       <Filter>Base</Filter>
     </ClCompile>
+    <ClCompile Include="Examples\Ex_Lighting_Tex.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.MD" />
@@ -226,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="Base\World.h">
       <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Ex_Lighting_Tex.h">
+      <Filter>Examples</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

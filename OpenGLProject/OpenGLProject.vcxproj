@@ -149,6 +149,7 @@
     <ClCompile Include="Examples\Ex3_1.cpp" />
     <ClCompile Include="Examples\Ex3_2.cpp" />
     <ClCompile Include="Examples\Ex_Lighting.cpp" />
+    <ClCompile Include="Examples\Ex_Lighting_Tex.cpp" />
     <ClCompile Include="Examples\FaceBox.cpp" />
     <ClCompile Include="Examples\Triangle.cpp" />
     <ClCompile Include="main.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="Examples\Ex3_1.h" />
     <ClInclude Include="Examples\Ex3_2.h" />
     <ClInclude Include="Examples\Ex_Lighting.h" />
+    <ClInclude Include="Examples\Ex_Lighting_Tex.h" />
     <ClInclude Include="Examples\FaceBox.h" />
     <ClInclude Include="Examples\Triangle.h" />
     <ClInclude Include="GLEnvHeader.h" />

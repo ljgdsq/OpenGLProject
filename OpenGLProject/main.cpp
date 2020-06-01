@@ -21,6 +21,7 @@
 
 
 #include "Examples/Ex_Lighting.h"
+#include "Examples/Ex_Lighting_Tex.h"
 
 
 using namespace std;
@@ -165,7 +166,8 @@ int main(int argc,char**argv)
    // Renderer* render = new Ex3_1();
     //Renderer* render = new Ex3_2();
     //FaceBox* render = new FaceBox();
-    Ex_Lighting* render = new Ex_Lighting();
+    //Ex_Lighting* render = new Ex_Lighting();
+    Ex_Lighting_Tex* render = new Ex_Lighting_Tex();
     glEnable(GL_DEPTH_TEST);
     while (!glfwWindowShouldClose(window))
     {
