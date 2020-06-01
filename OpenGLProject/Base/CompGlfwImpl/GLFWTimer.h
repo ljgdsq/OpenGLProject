@@ -6,7 +6,8 @@ class GLFWTimer:public Singleton<GLFWTimer>,public ITimer
 
 public:
     void Tick() override;
-    float GetElapsedTime();
+    float GetElapsedTime() override;
+    float GetGameTime() override;
 
 };
 

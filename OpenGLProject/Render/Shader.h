@@ -20,6 +20,11 @@ private:
     bool needDeleteAfterCompile;
     int vertexShader;
     int fragmentShader;
+
+public:
+    static const char* modelStr;
+    static const char* viewStr;
+    static const char* projectionStr;
 public:
     void Use();
     void SetBool(const std::string name, bool value) ;
@@ -27,8 +32,13 @@ public:
     void SetFloat(const std::string name, float value) ;
 
     void SetVec3f(const std::string name, float x, float y, float z);
+    void SetVec3f(const std::string name,glm::vec3 value);
     void SetVec4f(const std::string name, float x, float y, float z, float w);
+    void SetVec4f(const std::string name, glm::vec4 value);
 
     void SetMat4f(const std::string name, glm::mat4x4 mat);
+    void SetModelMat4f(glm::mat4x4 mat);
+    void SetViewMat4f(glm::mat4x4 mat);
+    void SetProjectionMat4f(glm::mat4x4 mat);
 };
 

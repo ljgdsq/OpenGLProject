@@ -6,6 +6,10 @@
 #include <glm/gtc/type_ptr.hpp>
 int Shader::INVALID_SHADER = -1;
 
+const char* Shader::modelStr = "model";
+const char* Shader::viewStr = "view";
+const char* Shader::projectionStr = "projection";
+
 Shader::Shader(const char* vertexShaderSource, const char* fragmentShaderSource, bool needDeleteAfterCompile)
 {
     shaderProgram = INVALID_SHADER;
@@ -136,12 +140,37 @@ void Shader::SetVec3f(const std::string name, float x, float y, float z)
     glUniform3f(glGetUniformLocation(GetShaderProgram(), name.c_str()), x, y, z);
 }
 
+void Shader::SetVec3f(const std::string name, glm::vec3 value)
+{
+    SetVec3f(name, value.x, value.y, value.z);
+}
+
 void Shader::SetVec4f(const std::string name, float x, float y, float z, float w)
 {
     glUniform4f(glGetUniformLocation(GetShaderProgram(), name.c_str()), x, y, z, w);
 }
 
+void Shader::SetVec4f(const std::string name, glm::vec4 value)
+{
+    SetVec4f(name, value.x, value.y, value.z,value.w);
+}
+
 void Shader::SetMat4f(const std::string name, glm::mat4x4 mat)
 {
     glUniformMatrix4fv(glGetUniformLocation(GetShaderProgram(), name.c_str()), 1, GL_FALSE, glm::value_ptr(mat));
+}
+
+void Shader::SetModelMat4f(glm::mat4x4 mat)
+{
+    SetMat4f(modelStr, mat);
+}
+
+void Shader::SetViewMat4f(glm::mat4x4 mat)
+{
+    SetMat4f(viewStr, mat);
+}
+
+void Shader::SetProjectionMat4f(glm::mat4x4 mat)
+{
+    SetMat4f(projectionStr, mat);
 }

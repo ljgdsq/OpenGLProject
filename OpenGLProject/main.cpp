@@ -5,6 +5,7 @@
 
 #include "Utils/LogUtil.h"
 #include "Utils/StringUtil.hpp"
+#include "Base/World.h"
 #include "Base/Camera.hpp"
 #include "Base/CompGlfwImpl/GLFWTimer.h"
 
@@ -18,7 +19,16 @@
 #include "Examples/Ex3_2.h"
 #include "Examples/FaceBox.h"
 
+
+#include "Examples/Ex_Lighting.h"
+
+
 using namespace std;
+
+World* world = World::GetInstance();
+Camera* camera = new Camera(glm::vec3(0, 0, 3));
+
+Camera* Camera::MainCamera = camera;
 
 ITimer* timer=GLFWTimer::GetInstance();
 
@@ -27,13 +37,12 @@ float lastTime = 0;
 double lastX = 0;
 double lastY = 0;
 bool isFirst = true;
-Camera* camera = new Camera(glm::vec3(0,0,3));
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     glViewport(0, 0, width, height);
 }
-
+bool isKeyDown = false;
 void processInput(GLFWwindow* window)
 {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
@@ -49,10 +58,24 @@ void processInput(GLFWwindow* window)
         camera->ProcessKeyboard(Camera_Movement::RIGHT, deltaTime);
 
     if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
-        camera->ProcessKeyboard(Camera_Movement::UP, deltaTime);
+        camera->ProcessKeyboard(Camera_Movement::DOWN, deltaTime);
 
     if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
-        camera->ProcessKeyboard(Camera_Movement::DOWN, deltaTime);
+        camera->ProcessKeyboard(Camera_Movement::UP, deltaTime);
+
+    if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
+    {
+        isKeyDown = true;
+        // LogUtil::GetInstance()->Info(toString(timer->IsPaused()));
+    }
+    if (glfwGetKey(window, GLFW_KEY_P) == GLFW_RELEASE && isKeyDown)
+    {
+        isKeyDown = false;
+        timer->SetPause(!timer->IsPaused());
+       // LogUtil::GetInstance()->Info(toString(timer->IsPaused()));
+    }
+
+   // LogUtil::GetInstance()->Info(toString(camera->position));
 }
 
 void mouse_callback(GLFWwindow* window, double x, double y)
@@ -76,13 +99,15 @@ void mouse_callback(GLFWwindow* window, double x, double y)
 void mouse_scroll(GLFWwindow* window, double x, double y)
 {
     camera->ProcessMouseScroll((float)y);
-    LogUtil::GetInstance()->Info(toString(y));
+ //   LogUtil::GetInstance()->Info(toString(y));
 }
 
 int main(int argc,char**argv)
 {
-    const char* title = "OpenGL";
+    world->InitWorld(timer, nullptr, ResourceLoader::GetInstance(), camera);
+    timer->Init();
 
+    const char* title = "OpenGL";
     const int width = 800;
     const int height = 600;
     ProjectConfig::GetInstance()->SetExecutePath(argv[0]);
@@ -139,7 +164,8 @@ int main(int argc,char**argv)
     //Renderer* render = new Ex2_2();
    // Renderer* render = new Ex3_1();
     //Renderer* render = new Ex3_2();
-    FaceBox* render = new FaceBox();
+    //FaceBox* render = new FaceBox();
+    Ex_Lighting* render = new Ex_Lighting();
     glEnable(GL_DEPTH_TEST);
     while (!glfwWindowShouldClose(window))
     {
@@ -154,8 +180,8 @@ int main(int argc,char**argv)
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
        //glClear(GL_COLOR_BUFFER_BIT);
     
-        //render->Draw();
-        render->Draw2(camera->GetViewMatrix(),camera->zoom);
+        render->Draw();
+       // render->Draw2(camera->GetViewMatrix(),camera->zoom);
 
         glfwSwapBuffers(window);
         glfwPollEvents();

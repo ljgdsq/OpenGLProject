@@ -16,6 +16,5 @@ protected:
     unsigned int VBO;
     unsigned int EBO;
     Shader* shader;
-
 };
 
