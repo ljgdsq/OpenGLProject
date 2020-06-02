@@ -4,7 +4,7 @@
 #include <GLFW/glfw3.h>
 
 #include "Utils/LogUtil.h"
-#include "Utils/StringUtil.hpp"
+#include "Utils/StringUtil.h"
 #include "Base/World.h"
 #include "Base/Camera.hpp"
 #include "Base/CompGlfwImpl/GLFWTimer.h"

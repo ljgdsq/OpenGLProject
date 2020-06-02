@@ -9,9 +9,11 @@
 #include <GLFW/glfw3.h>
 #include "../Base/World.h"
 #include "../Base/interface/ITimer.h"
+#include "../Utils/StringUtil.h"
 glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
 void Ex_Lighting_Cast::Draw()
 {
+    lightPos = Camera::MainCamera->position;
     glm::vec3 cubePositions[] = {
     glm::vec3(0.0f,  0.0f,  0.0f),
     glm::vec3(2.0f,  5.0f, -15.0f),
@@ -40,11 +42,13 @@ void Ex_Lighting_Cast::Draw()
     //lightColor.x = sin(realTime * 2.0f);
     //lightColor.y = sin(realTime * 0.7f);
     //lightColor.z = sin(realTime * 1.3f);
-    glm::vec3 diffuseColor = lightColor * glm::vec3(0.5f);
-    glm::vec3 ambientColor = diffuseColor * glm::vec3(0.2f);
+    glm::vec3 diffuseColor = lightColor * glm::vec3(0.8f);
+    glm::vec3 ambientColor =  glm::vec3(0.1f);
 
-    //shader->SetVec3f("light.direction", lightDirection);
-    shader->SetVec3f("light.position", lightPos);
+    shader->SetVec3f("light.direction", Camera::MainCamera->front);
+
+    //LogUtil::GetInstance()->Info(toString(Camera::MainCamera->front));
+    shader->SetVec3f("light.position", Camera::MainCamera->position);
     shader->SetVec3f("light.ambient", ambientColor);
     shader->SetVec3f("light.diffuse", diffuseColor);
     shader->SetVec3f("light.specular", 1.0f, 1.0f, 1.0f);
@@ -52,6 +56,8 @@ void Ex_Lighting_Cast::Draw()
     shader->SetFloat("light.constant", 1.0f);
     shader->SetFloat("light.linear", 0.09f);
     shader->SetFloat("light.quadratic", 0.032f);
+    shader->SetFloat("light.cutoff", glm::cos(glm::radians(12.5f)));
+    shader->SetFloat("light.outCutoff", glm::cos(glm::radians(30.5f)));
 
     glm::mat4 projection = glm::mat4(1.0f);
     projection = glm::perspective(glm::radians(Camera::MainCamera->zoom), (float)winSize.x / (float)winSize.y, 0.1f, 100.0f);
@@ -82,7 +88,7 @@ void Ex_Lighting_Cast::Draw()
     model = glm::scale(model, glm::vec3(0.2f)); // a smaller cube
     lightShader->SetMat4f("model", model);
 
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+    //glDrawArrays(GL_TRIANGLES, 0, 36);
 
     lineShader->Use();
     lineShader->SetMat4f("model", glm::mat4(1.0f));
@@ -171,7 +177,7 @@ void Ex_Lighting_Cast::InitData()
 
     struct Light {
         vec3 position;
-
+        vec3 direction;
         vec3 ambient;
         vec3 diffuse;
         vec3 specular;
@@ -180,6 +186,9 @@ void Ex_Lighting_Cast::InitData()
         float constant;
         float linear;
         float quadratic;
+
+        float cutoff;
+        float outCutoff;
     };
 
     uniform Light light;
@@ -189,9 +198,18 @@ void Ex_Lighting_Cast::InitData()
         float distance=length(light.position-FragPos);
         float attenuation=1.0/(light.constant+light.linear*distance+light.quadratic*light.quadratic*distance);
         vec3 ambient=light.ambient*texture(material.diffuse,TexCoord).xyz;
-        
-        vec3 nor=normalize(Normal);
+
         vec3 lightDir=normalize(FragPos-light.position);
+        float theta=dot(lightDir,normalize(light.direction));
+        if(theta<light.cutoff)
+        {
+
+		   FragColor=vec4(ambient,1.0f);
+        }else
+        {
+        float intensity=clamp((theta-light.outCutoff)/(light.cutoff-light.outCutoff),0.0,1.0);
+
+        vec3 nor=normalize(Normal);
         float diff=max(dot(-lightDir,nor),0.0f);
         vec3 diffuse=diff*light.diffuse*texture(material.diffuse,TexCoord).xyz;
 
@@ -200,8 +218,11 @@ void Ex_Lighting_Cast::InitData()
         float spec=pow(max(dot(viewDir,reflectDir),0.0f),material.shininess);    
         vec3 specular=spec*light.specular*texture(material.specular,TexCoord).xyz;
 
-        vec3 col=(ambient+diffuse+specular)*attenuation;
+        //vec3 col=ambient+(diffuse+specular)*attenuation*intensity;
+        vec3 col=vec3(theta,0.5,0.2);
+    
 		FragColor=vec4(col,1.0f);
+         }
 	}
 )";
 

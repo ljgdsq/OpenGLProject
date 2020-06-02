@@ -1,8 +1,4 @@
-#pragma once
-#include <string>
-#include <sstream>
-
-#include <glm/glm.hpp>
+#include "StringUtil.h"
 
 template<class T>
 std::string toString(T value)
@@ -12,8 +8,9 @@ std::string toString(T value)
     return ssm.str();
 }
 
+
 template<>
-std::string toString(const char*value)
+std::string toString(const char* value)
 {
     return std::string(value);
 }
@@ -23,7 +20,7 @@ std::string toString(std::string value)
 {
     return value;
 }
-
+template<>
 std::string toString(glm::vec3 value)
 {
     std::stringstream ssm;

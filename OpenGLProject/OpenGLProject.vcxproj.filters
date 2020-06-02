@@ -108,6 +108,12 @@
     <ClCompile Include="Examples\Ex_Lighting_Cast.cpp">
       <Filter>Examples</Filter>
     </ClCompile>
+    <ClCompile Include="Utils\InIReader.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\StringUtil.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.MD" />
@@ -206,9 +212,6 @@
     <ClInclude Include="Base\ProjetInit.hpp">
       <Filter>Base</Filter>
     </ClInclude>
-    <ClInclude Include="Utils\StringUtil.hpp">
-      <Filter>Utils</Filter>
-    </ClInclude>
     <ClInclude Include="Base\Image.h">
       <Filter>Base</Filter>
     </ClInclude>
@@ -238,6 +241,12 @@
     </ClInclude>
     <ClInclude Include="Examples\Ex_Lighting_Cast.h">
       <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\InIReader.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\StringUtil.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

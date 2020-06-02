@@ -158,7 +158,9 @@
     <ClCompile Include="Render\Shader.cpp" />
     <ClCompile Include="Render\ShaderSources\ShaderSources.cpp" />
     <ClCompile Include="Utils\FileUtil.cpp" />
+    <ClCompile Include="Utils\InIReader.cpp" />
     <ClCompile Include="Utils\LogUtil.cpp" />
+    <ClCompile Include="Utils\StringUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.MD" />
@@ -204,8 +206,9 @@
     <ClInclude Include="Render\ShaderSources\ShaderSources.h" />
     <ClInclude Include="Utils\FileUtil.h" />
     <ClInclude Include="Utils\GLEnvInfo.hpp" />
+    <ClInclude Include="Utils\InIReader.h" />
     <ClInclude Include="Utils\LogUtil.h" />
-    <ClInclude Include="Utils\StringUtil.hpp" />
+    <ClInclude Include="Utils\StringUtil.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
