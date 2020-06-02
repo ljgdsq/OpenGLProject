@@ -105,6 +105,9 @@
     <ClCompile Include="Examples\Ex_Lighting_Tex.cpp">
       <Filter>Examples</Filter>
     </ClCompile>
+    <ClCompile Include="Examples\Ex_Lighting_Cast.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.MD" />
@@ -231,6 +234,9 @@
       <Filter>Base</Filter>
     </ClInclude>
     <ClInclude Include="Examples\Ex_Lighting_Tex.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Ex_Lighting_Cast.h">
       <Filter>Examples</Filter>
     </ClInclude>
   </ItemGroup>

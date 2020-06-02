@@ -22,6 +22,7 @@
 
 #include "Examples/Ex_Lighting.h"
 #include "Examples/Ex_Lighting_Tex.h"
+#include "Examples/Ex_Lighting_Cast.h"
 
 
 using namespace std;
@@ -167,7 +168,8 @@ int main(int argc,char**argv)
     //Renderer* render = new Ex3_2();
     //FaceBox* render = new FaceBox();
     //Ex_Lighting* render = new Ex_Lighting();
-    Ex_Lighting_Tex* render = new Ex_Lighting_Tex();
+    //Ex_Lighting_Tex* render = new Ex_Lighting_Tex();
+    Ex_Lighting_Cast* render = new Ex_Lighting_Cast();
     glEnable(GL_DEPTH_TEST);
     while (!glfwWindowShouldClose(window))
     {
