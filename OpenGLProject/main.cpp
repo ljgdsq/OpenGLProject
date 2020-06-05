@@ -18,6 +18,7 @@
 #include "Examples/Ex3_1.h"
 #include "Examples/Ex3_2.h"
 #include "Examples/FaceBox.h"
+#include "Examples/Ex_Cyclender.h"
 
 
 #include "Examples/Ex_Lighting.h"
@@ -169,8 +170,12 @@ int main(int argc,char**argv)
     //FaceBox* render = new FaceBox();
     //Ex_Lighting* render = new Ex_Lighting();
     //Ex_Lighting_Tex* render = new Ex_Lighting_Tex();
-    Ex_Lighting_Cast* render = new Ex_Lighting_Cast();
+    //Ex_Lighting_Cast* render = new Ex_Lighting_Cast();
+    Ex_Cyclender* render = new Ex_Cyclender();
     glEnable(GL_DEPTH_TEST);
+    //glEnable(GL_ALPHA_TEST);
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+
     while (!glfwWindowShouldClose(window))
     {
         timer->Tick();
