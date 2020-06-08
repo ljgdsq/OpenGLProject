@@ -120,6 +120,9 @@
     <ClCompile Include="Utils\ScreenViewUtil.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Examples\Ex_DynamicPolygon.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.MD" />
@@ -259,6 +262,9 @@
     </ClInclude>
     <ClInclude Include="Utils\ScreenViewUtil.h">
       <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Ex_DynamicPolygon.h">
+      <Filter>Examples</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

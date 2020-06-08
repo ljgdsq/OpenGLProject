@@ -1,4 +1,4 @@
-#include "Ex_Cyclender.h"
+#include "Ex_DynamicPolygon.h"
 #include "../Base/ResourceLoader.h"
 #include "../Base/ProjetConfig.hpp"
 #include "../Base/Camera.hpp"
@@ -9,13 +9,15 @@
 #include <GLFW/glfw3.h>
 #include "../Base/World.h"
 #include "../Base/interface/ITimer.h"
-Ex_Cyclender::Ex_Cyclender()
+#include <exception>
+Ex_DynamicPolygon::Ex_DynamicPolygon()
 {
+    throw new std::exception(); //TODO fix this ex use dynamic data
     InitData();
 }
-
-void Ex_Cyclender::Draw()
+void Ex_DynamicPolygon::Draw()
 {
+
     Renderer::Draw();
     shader->Use();
     glBindVertexArray(VAO);
@@ -27,20 +29,20 @@ void Ex_Cyclender::Draw()
     glm::mat4 projection = glm::mat4(1.0f);
     projection = glm::perspective(glm::radians(Camera::MainCamera->zoom), (float)winSize.x / (float)winSize.y, 0.1f, 100.0f);
     shader->SetMat4f("projection", projection);
-    
+
     shader->SetViewMat4f(Camera::MainCamera->GetViewMatrix());
 
     shader->SetVec3f("objectColor", glm::vec3(0.8, 0.5, 0));
- 
-    glDrawArrays(GL_TRIANGLE_FAN, 0, vertexCount+2);
 
-   
+    glDrawArrays(GL_TRIANGLE_FAN, 0, vertexCount + 2);
+
+
     glBindVertexArray(sideVAO);
     glPointSize(6);
- 
+
     shader->SetVec3f("objectColor", glm::vec3(0.15, 0.5, 0));
     //glDrawElements(GL_POINTS,15 , GL_UNSIGNED_INT, 0);
-    glDrawElements(GL_TRIANGLES, 6*vertexCount, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, 6 * vertexCount, GL_UNSIGNED_INT, 0);
     glBindVertexArray(VAO);
 
     glPointSize(1);
@@ -48,12 +50,14 @@ void Ex_Cyclender::Draw()
     model = glm::translate(model, glm::vec3(0.f, 0.0f, height));
     shader->SetModelMat4f(model);
     glDrawArrays(GL_TRIANGLE_FAN, 0, vertexCount + 2);
-    
+
+
+    ChangeData();
 }
 
 
 
-void Ex_Cyclender::InitData()
+void Ex_DynamicPolygon::InitData()
 {
     Renderer::InitData();
     winSize = ProjectConfig::GetInstance()->GetWindowSize();
@@ -80,8 +84,40 @@ void Ex_Cyclender::InitData()
       FragColor=vec4(objectColor,1.0f);
 	}
 )";
+    shader->CreateShaderProgram(vertexShader, fragmentShader);
 
-    vertexCount = 100;
+    minSide = 3;
+    maxSide = 50;
+    curSide = minSide;
+    time = 0;
+    changeSpeed = 1.0f;
+    isDirty = true;
+    glDisable(GL_CULL_FACE);
+}
+
+void Ex_DynamicPolygon::ChangeData()
+{
+    
+    time += World::GetInstance()->GetTimer()->GetDeltaTime();
+    if (time >= changeSpeed)
+    {
+        time = 0;
+        curSide++;
+        isDirty = true;
+
+        if (curSide > maxSide)
+        {
+            curSide = minSide;
+        }
+    }
+
+    if (!isDirty)
+    {
+        return;
+    }
+
+
+    vertexCount = curSide;
     height = 0.9;
     Vec3* vertices = new Vec3[vertexCount + 2];
 
@@ -96,7 +132,6 @@ void Ex_Cyclender::InitData()
     vertices[vertexCount + 1] = vertices[1];
 
 
-    shader->CreateShaderProgram(vertexShader, fragmentShader);
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
 
@@ -110,26 +145,25 @@ void Ex_Cyclender::InitData()
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     //glEnable(GL_BLEND);
 
-    Vec3* vertices2 =new Vec3[vertexCount + 2];
-
+    Vec3* vertices2 = new Vec3[vertexCount + 2];
 
     for (int i = 0; i < vertexCount + 2; i++)
     {
         vertices2[i] = vertices[i] - Vec3(0, 0, -height);
     }
     vertices2[0] = vertices[0];
-    Vec3* sides = new Vec3[vertexCount * 2+2];
+    Vec3* sides = new Vec3[vertexCount * 2 + 2];
 
     for (int i = 0; i <= vertexCount; i++)
     {
-        sides[i*2] =vertices[i+1];
-        sides[i*2 + 1] = vertices2[i+1];
+        sides[i * 2] = vertices[i + 1];
+        sides[i * 2 + 1] = vertices2[i + 1];
     }
 
-    sides[vertexCount* 2] = sides[0];
-    sides[vertexCount*2+1] = sides[1];
-    
-   unsigned int* indices = new unsigned int[vertexCount * 6];
+    sides[vertexCount * 2] = sides[0];
+    sides[vertexCount * 2 + 1] = sides[1];
+
+    unsigned int* indices = new unsigned int[vertexCount * 6];
     for (int i = 0; i < vertexCount; i++)
     {
         indices[i * 6 + 0] = 2 * i + 0;
@@ -147,13 +181,15 @@ void Ex_Cyclender::InitData()
     glBindVertexArray(sideVAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, sideVBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(Vec3) * (vertexCount+1) * 2, &sides[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Vec3) * (vertexCount + 1) * 2, &sides[0], GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vec3), (void*)0);
     glEnableVertexAttribArray(0);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, sideEBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int)* vertexCount * 6, &indices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * vertexCount * 6, &indices[0], GL_STATIC_DRAW);
 
-    glDisable(GL_CULL_FACE);
+
+    isDirty = false;
+   
 }

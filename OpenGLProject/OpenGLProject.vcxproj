@@ -149,6 +149,7 @@
     <ClCompile Include="Examples\Ex3_1.cpp" />
     <ClCompile Include="Examples\Ex3_2.cpp" />
     <ClCompile Include="Examples\Ex_Cyclender.cpp" />
+    <ClCompile Include="Examples\Ex_DynamicPolygon.cpp" />
     <ClCompile Include="Examples\Ex_Lighting.cpp" />
     <ClCompile Include="Examples\Ex_Lighting_Cast.cpp" />
     <ClCompile Include="Examples\Ex_Lighting_Tex.cpp" />
@@ -197,6 +198,7 @@
     <ClInclude Include="Examples\Ex3_1.h" />
     <ClInclude Include="Examples\Ex3_2.h" />
     <ClInclude Include="Examples\Ex_Cyclender.h" />
+    <ClInclude Include="Examples\Ex_DynamicPolygon.h" />
     <ClInclude Include="Examples\Ex_Lighting.h" />
     <ClInclude Include="Examples\Ex_Lighting_Cast.h" />
     <ClInclude Include="Examples\Ex_Lighting_Tex.h" />
