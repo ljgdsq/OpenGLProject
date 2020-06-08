@@ -42,8 +42,6 @@ void Renderer::Draw()
     indicatorShader->SetVec3f("objectColor", glm::vec3(0, 0, 1.0));
     glDrawArrays(GL_LINES, 4, 2);
 
-
-
 #endif
 
 }

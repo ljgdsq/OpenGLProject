@@ -13,6 +13,7 @@ Ex_Cyclender::Ex_Cyclender()
 {
     InitData();
 }
+int* index = 0;
 
 void Ex_Cyclender::Draw()
 {
@@ -32,19 +33,22 @@ void Ex_Cyclender::Draw()
 
     shader->SetVec3f("objectColor", glm::vec3(0.8, 0.5, 0));
  
-  //  glDrawArrays(GL_TRIANGLE_FAN, 0, vertexCount+2);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, vertexCount+2);
 
    
     glBindVertexArray(sideVAO);
-
-    shader->SetVec3f("objectColor", glm::vec3(0.2, 0.5, 0));
-    glDrawElements(GL_TRIANGLES, 6* vertexCount, GL_UNSIGNED_INT, 0);
+    glPointSize(6);
+ 
+    shader->SetVec3f("objectColor", glm::vec3(0.15, 0.5, 0));
+    //glDrawElements(GL_POINTS,15 , GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, 6*vertexCount, GL_UNSIGNED_INT, 0);
     glBindVertexArray(VAO);
 
+    glPointSize(1);
     shader->SetVec3f("objectColor", glm::vec3(1, 0.5, 0));
     model = glm::translate(model, glm::vec3(0.f, 0.0f, height));
     shader->SetModelMat4f(model);
-  //  glDrawArrays(GL_TRIANGLE_FAN, 0, vertexCount + 2);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, vertexCount + 2);
     
 }
 
@@ -78,7 +82,7 @@ void Ex_Cyclender::InitData()
 	}
 )";
 
-    vertexCount = 3;
+    vertexCount = 100;
     height = 0.9;
     Vec3* vertices = new Vec3[vertexCount + 2];
 
@@ -112,18 +116,21 @@ void Ex_Cyclender::InitData()
 
     for (int i = 0; i < vertexCount + 2; i++)
     {
-        vertices2[i] = vertices[i] - Vec3(0, 0, height);
+        vertices2[i] = vertices[i] - Vec3(0, 0, -height);
     }
     vertices2[0] = vertices[0];
-    Vec3* sides = new Vec3[vertexCount * 2];
+    Vec3* sides = new Vec3[vertexCount * 2+2];
 
-    for (int i = 0; i < vertexCount; i++)
+    for (int i = 0; i <= vertexCount; i++)
     {
         sides[i*2] =vertices[i+1];
         sides[i*2 + 1] = vertices2[i+1];
     }
 
-    int* indices = new int[vertexCount * 6];
+    sides[vertexCount* 2] = sides[0];
+    sides[vertexCount*2+1] = sides[1];
+    
+   unsigned int* indices = new unsigned int[vertexCount * 6];
     for (int i = 0; i < vertexCount; i++)
     {
         indices[i * 6 + 0] = 2 * i + 0;
@@ -134,7 +141,6 @@ void Ex_Cyclender::InitData()
         indices[i * 6 + 5] = 2 * i + 3;
     }
 
-
     glGenVertexArrays(1, &sideVAO);
     glGenBuffers(1, &sideVBO);
     glGenBuffers(1, &sideEBO);
@@ -142,13 +148,13 @@ void Ex_Cyclender::InitData()
     glBindVertexArray(sideVAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, sideVBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(Vec3) * (vertexCount * 2), sides, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Vec3) * (vertexCount+1) * 2, &sides[0], GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vec3), (void*)0);
     glEnableVertexAttribArray(0);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, sideEBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int)* vertexCount * 6, &indices[0], GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int)* vertexCount * 6, &indices[0], GL_STATIC_DRAW);
 
     glDisable(GL_CULL_FACE);
 }
