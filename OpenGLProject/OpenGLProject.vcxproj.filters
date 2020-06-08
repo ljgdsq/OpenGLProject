@@ -117,6 +117,9 @@
     <ClCompile Include="Examples\Ex_Cyclender.cpp">
       <Filter>Examples</Filter>
     </ClCompile>
+    <ClCompile Include="Utils\ScreenViewUtil.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.MD" />
@@ -253,6 +256,9 @@
     </ClInclude>
     <ClInclude Include="Examples\Ex_Cyclender.h">
       <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\ScreenViewUtil.h">
+      <Filter>Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

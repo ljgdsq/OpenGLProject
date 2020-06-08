@@ -28,23 +28,26 @@ struct Vec3
         z = 0;
     }
     Vec3(float x,float y,float z) {
-        x = 0;
-        y = 0;
-        z = 0;
+        this->x = x;
+        this->y = y;
+        this->z = z;
     }
 
-    void operator = (glm::vec3& output)
+   Vec3& operator = (glm::vec3& output)
     {
         x = output.x;
         y = output.y;
         z = output.z;
-    }
-    Vec3 operator - (Vec3 output)
-    {
-        x -= output.x;
-        y -= output.y;
-        z -= output.z;
         return *this;
+    }
+
+    Vec3 &operator - (Vec3 output)
+    {
+        Vec3 ret;
+        ret.x = x-output.x;
+        ret.y = y-output.y;
+        ret.z = z-output.z;
+        return ret;
     }
 
 };

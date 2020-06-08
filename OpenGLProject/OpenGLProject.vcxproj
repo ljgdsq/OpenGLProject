@@ -161,6 +161,7 @@
     <ClCompile Include="Utils\FileUtil.cpp" />
     <ClCompile Include="Utils\InIReader.cpp" />
     <ClCompile Include="Utils\LogUtil.cpp" />
+    <ClCompile Include="Utils\ScreenViewUtil.cpp" />
     <ClCompile Include="Utils\StringUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -210,6 +211,7 @@
     <ClInclude Include="Utils\GLEnvInfo.hpp" />
     <ClInclude Include="Utils\InIReader.h" />
     <ClInclude Include="Utils\LogUtil.h" />
+    <ClInclude Include="Utils\ScreenViewUtil.h" />
     <ClInclude Include="Utils\StringUtil.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,4 +1,5 @@
 #pragma once
+
 const float cube_vert[] = {
      -0.5f, -0.5f, -0.5f, 
       0.5f, -0.5f, -0.5f, 
@@ -173,3 +174,4 @@ const float cube_vert_normal_texel[]=
     -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 0.0f,
     -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f
 };
+
