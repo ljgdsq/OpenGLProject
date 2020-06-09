@@ -11,3 +11,5 @@
 ### memory leak check
 ### EX_DynamicPloygon
 ### refactor project (model part and base part use different concept  like texture )
+### model  add lighting
+### extract lighting code 

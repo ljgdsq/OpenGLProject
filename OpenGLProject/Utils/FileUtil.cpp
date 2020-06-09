@@ -36,3 +36,15 @@ std::string FileUtil::GetResourceFullPath(std::string name)
     auto fullPath = ProjectConfig::GetInstance()->GetExecutePath();
     return fullPath+"/"+Resource+"/"+name;
 }
+
+std::string FileUtil::GetResourceImageFullPath(std::string name)
+{
+    if (name.find("images") != name.npos)
+    {
+        return FileUtil::GetInstance()->GetResourceFullPath(name);
+    }
+    else
+    {
+        return FileUtil::GetInstance()->GetResourceFullPath("images/" + name);
+    }
+}

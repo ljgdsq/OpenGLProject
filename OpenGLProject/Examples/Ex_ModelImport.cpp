@@ -54,6 +54,7 @@ void Ex_ModelImport::Draw()
     shader->Use();
 
     glm::mat4 modelMatrix(1.0f);
+    modelMatrix = glm::scale(modelMatrix, glm::vec3(0.3f,0.3f,0.3f));
     shader->SetModelMat4f(modelMatrix);
     shader->SetViewMat4f(Camera::MainCamera->GetViewMatrix());
     glm::mat4 projection = glm::mat4(1.0f);

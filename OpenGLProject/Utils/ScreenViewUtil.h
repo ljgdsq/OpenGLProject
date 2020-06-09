@@ -3,7 +3,7 @@
 class ScreenViewUtil:public Singleton<ScreenViewUtil>
 {
 public:
-    void SetUpShaderMVPMatrix(class Camera* camera, class Shader* shader);
-    void SetUpShaderVPMatrix(class Camera* camera, class Shader* shader);
+    void SetUpShaderMVPMatrix(class Shader* shader,class Camera* camera=nullptr);
+    void SetUpShaderVPMatrix(class Shader* shader,class Camera* camera=nullptr);
 };
 

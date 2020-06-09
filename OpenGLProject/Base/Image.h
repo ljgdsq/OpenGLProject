@@ -50,7 +50,7 @@ public:
          if (texture == GL_INVALID_VALUE) {
 
              GenTexture();
-             LogUtil::GetInstance()->Warn("you need call GenTexture first!");
+             LogUtil::GetInstance()->Info("auto generate texture!");
          }
         return texture;
     }

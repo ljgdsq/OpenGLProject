@@ -7,5 +7,6 @@ public:
     std::string LoadStringFromFile(std::string path);
     std::string LoadStringFromProjectResource(std::string name);
     std::string GetResourceFullPath(std::string name);
+    std::string GetResourceImageFullPath(std::string name);
 };
 

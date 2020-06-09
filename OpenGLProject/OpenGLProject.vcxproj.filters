@@ -34,6 +34,9 @@
     <Filter Include="Base\CompGlfwImpl">
       <UniqueIdentifier>{1cded8f4-35df-4fb8-9bf7-6b5190c97b2c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shape">
+      <UniqueIdentifier>{3bc496ed-7b8d-4e96-a442-7343f9625dda}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -128,6 +131,18 @@
     </ClCompile>
     <ClCompile Include="Examples\Ex_ModelImport.cpp">
       <Filter>Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Ex_DepthTest.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\ExampleBase.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Ex_StencilTest.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="shape\WorldIndicator.cpp">
+      <Filter>Shape</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -277,6 +292,24 @@
     </ClInclude>
     <ClInclude Include="Examples\Ex_ModelImport.h">
       <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Ex_DepthTest.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\ExampleBase.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\ExampleInit.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\ExampleCommomHeader.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Ex_StencilTest.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="shape\WorldIndicator.h">
+      <Filter>Shape</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

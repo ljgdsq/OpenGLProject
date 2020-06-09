@@ -41,7 +41,7 @@ struct Vec3
         return *this;
     }
 
-    Vec3 &operator - (Vec3 output)
+    Vec3 operator - (Vec3 output)
     {
         Vec3 ret;
         ret.x = x-output.x;

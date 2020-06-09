@@ -8,26 +8,10 @@
 #include "Base/World.h"
 #include "Base/Camera.hpp"
 #include "Base/CompGlfwImpl/GLFWTimer.h"
-
-#include "Examples/Triangle.h"
-#include "Examples/ColorTriangle.h"
 #include "Base/ProjetConfig.hpp"
-#include "Examples/Ex1_1.h"
-#include "Examples/Ex2_1.h"
-#include "Examples/Ex2_2.h"
-#include "Examples/Ex3_1.h"
-#include "Examples/Ex3_2.h"
-#include "Examples/FaceBox.h"
-#include "Examples/Ex_Cyclender.h"
-#include "Examples/Ex_DynamicPolygon.h"
-#include "Examples/Ex_ModelImport.h"
 
-
-#include "Examples/Ex_Lighting.h"
-#include "Examples/Ex_Lighting_Tex.h"
-#include "Examples/Ex_Lighting_Cast.h"
-
-
+#include "Examples/ExampleInit.h"
+#include "Shape/WorldIndicator.h"
 using namespace std;
 
 World* world = World::GetInstance();
@@ -35,7 +19,7 @@ Camera* camera = new Camera(glm::vec3(0, 0, 3));
 
 Camera* Camera::MainCamera = camera;
 
-ITimer* timer=GLFWTimer::GetInstance();
+ITimer* timer = GLFWTimer::GetInstance();
 
 float deltaTime = 0;
 float lastTime = 0;
@@ -77,10 +61,10 @@ void processInput(GLFWwindow* window)
     {
         isKeyDown = false;
         timer->SetPause(!timer->IsPaused());
-       // LogUtil::GetInstance()->Info(toString(timer->IsPaused()));
+        // LogUtil::GetInstance()->Info(toString(timer->IsPaused()));
     }
 
-   // LogUtil::GetInstance()->Info(toString(camera->position));
+    // LogUtil::GetInstance()->Info(toString(camera->position));
 }
 
 void mouse_callback(GLFWwindow* window, double x, double y)
@@ -97,17 +81,17 @@ void mouse_callback(GLFWwindow* window, double x, double y)
 
     lastX = x;
     lastY = y;
-   // LogUtil::GetInstance()->Info(toString(xOffset));
+    // LogUtil::GetInstance()->Info(toString(xOffset));
     camera->ProcessMouseMove((float)xOffset, (float)yOffset);
 }
 
 void mouse_scroll(GLFWwindow* window, double x, double y)
 {
     camera->ProcessMouseScroll((float)y);
- //   LogUtil::GetInstance()->Info(toString(y));
+    //   LogUtil::GetInstance()->Info(toString(y));
 }
 
-int main(int argc,char**argv)
+int main(int argc, char** argv)
 {
     world->InitWorld(timer, nullptr, ResourceLoader::GetInstance(), camera);
     timer->Init();
@@ -117,10 +101,10 @@ int main(int argc,char**argv)
     const int height = 600;
     ProjectConfig::GetInstance()->SetExecutePath(argv[0]);
     Size size;
-    size.x = 800;
-    size.y = 600;
+    size.x = width;
+    size.y = height;
     ProjectConfig::GetInstance()->SetWindowSize(size);
-    LogUtil::GetInstance()->Verbose("Dir:"+ ProjectConfig::GetInstance()->GetExecutePath());
+    LogUtil::GetInstance()->Verbose("Dir:" + ProjectConfig::GetInstance()->GetExecutePath());
 
 
 
@@ -132,7 +116,7 @@ int main(int argc,char**argv)
 #ifdef __APPLE__
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // uncomment this statement to fix compilation on OS X
 #endif
-    
+
     GLFWwindow* window = glfwCreateWindow(width, height, title, nullptr, nullptr);
     if (window == nullptr)
     {
@@ -161,7 +145,7 @@ int main(int argc,char**argv)
     //logUtil->Info("some info");
     //Renderer* triangle = new Triangle();
 
-  
+
     //Renderer* triangle = new ColorTriangle();
 
    // Renderer* render = new Ex1_1();
@@ -174,26 +158,30 @@ int main(int argc,char**argv)
     //Ex_Lighting_Tex* render = new Ex_Lighting_Tex();
     //Ex_Lighting_Cast* render = new Ex_Lighting_Cast();
     //Ex_Cyclender* render = new Ex_Cyclender();
-    Renderer* render = new Ex_ModelImport();
+    InitExamples();
+    // Renderer* render = ExampleBase::GetExample("Ex_DepthTest");
+    Renderer* render = ExampleBase::GetLastExample();
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_ALPHA_TEST);
     //glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
 
+    auto indicator = new WorldIndicator();
     while (!glfwWindowShouldClose(window))
     {
         timer->Tick();
-
         deltaTime = timer->GetDeltaTime();
-
 
         processInput(window);
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-       //glClear(GL_COLOR_BUFFER_BIT);
-    
-        render->Draw();
-       // render->Draw2(camera->GetViewMatrix(),camera->zoom);
+
+        if (render)
+        {
+            render->Draw();
+        }
+
+        indicator->Draw();
 
         glfwSwapBuffers(window);
         glfwPollEvents();

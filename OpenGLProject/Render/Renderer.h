@@ -1,5 +1,6 @@
 #pragma once
 #include "Shader.h"
+#include "../Render/Renderer.h"
 
 
 class Renderer
@@ -17,19 +18,22 @@ protected:
     unsigned int EBO;
     Shader* shader;
 
-
-#if _DEBUG
-    unsigned int indicatorVAO;
-    unsigned int indicatorVBO;
-    float indicator_data[18] = {
-        //x
-        -0.5f,0,0,  0.5f,0,0,
-        //y
-        0,-0.5f,0,  0,0.5f,0,
-        //z
-        0,0,-0.5,   0,0,0.5f,
-    };
-    Shader* indicatorShader;
-#endif
 };
 
+#define RENDERER_BASE_CONSTRUCTOR_IMPL(TypeName) \
+    TypeName::TypeName()                    \
+    {                                        \
+    InitData();                              \
+    };                                       
+
+#define RENDERER_BASE_SUPER_DRAW()  \
+  Renderer::Draw();
+
+#define RENDERER_BASE_SUPER_INITDATA()  \
+  Renderer::InitData();
+
+#define RENDERER_BASE_DECLARE(TypeName) \
+public:\
+void Draw();\
+void InitData();\
+TypeName();
