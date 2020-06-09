@@ -1,5 +1,7 @@
 #pragma once
 
+
+//仅包含顶点数据
 const float cube_vert[] = {
      -0.5f, -0.5f, -0.5f, 
       0.5f, -0.5f, -0.5f, 
@@ -43,6 +45,7 @@ const float cube_vert[] = {
      -0.5f,  0.5f,  0.5f, 
      -0.5f,  0.5f, -0.5f
 };
+//包含顶点 纹理
 const float cube_vert_texel[] = {
      -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
       0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
@@ -86,6 +89,7 @@ const float cube_vert_texel[] = {
      -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
      -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 };
+//包含顶点 法线
 const float cube_vert_normal[] = {
        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
         0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
@@ -129,8 +133,8 @@ const float cube_vert_normal[] = {
        -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
 };
-const float cube_vert_normal_texel[]=
-{
+//包含顶点 法线 纹理 
+const float cube_vert_normal_texel[]={
     // positions          // normals           // texture coords
     -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
      0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 0.0f,

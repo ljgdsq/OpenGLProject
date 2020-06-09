@@ -90,6 +90,7 @@ void Ex_StencilTest::InitData()
     glBindTexture(GL_TEXTURE_2D, tex2);
 
     glEnable(GL_DEPTH_TEST);
+    glEnable(GL_STENCIL_TEST);
 }
 
 

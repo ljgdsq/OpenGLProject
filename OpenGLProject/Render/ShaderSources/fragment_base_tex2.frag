@@ -11,7 +11,5 @@ const char* fragment_base_tex2=R"(
 	void main()
 	{
 		FragColor = mix(texture(texture1, TexCoord), texture(texture2, TexCoord), mixPercent);
-		//FragColor=vec4(TexCoord,0.2,1.0);
-		//FragColor=texture(texture2, TexCoord);
 	}
 )";
