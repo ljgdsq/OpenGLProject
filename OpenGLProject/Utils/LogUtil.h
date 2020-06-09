@@ -37,3 +37,6 @@ private:
      std::string GetLevelSring(LogLevel level);
 };
 
+#define LOGE(msg)  LogUtil::GetInstance()->Error(msg);
+#define LOGW(msg)  LogUtil::GetInstance()->Warn(msg);
+#define LOGI(msg)  LogUtil::GetInstance()->Info(msg);

@@ -139,6 +139,7 @@
     <ClCompile Include="Base\CompGlfwImpl\GLFWInputController.cpp" />
     <ClCompile Include="Base\CompGlfwImpl\GLFWTimer.cpp" />
     <ClCompile Include="Base\Image.cpp" />
+    <ClCompile Include="Base\Model.cpp" />
     <ClCompile Include="Base\ProjetConfig.hpp" />
     <ClCompile Include="Base\ResourceLoader.cpp" />
     <ClCompile Include="Base\World.cpp" />
@@ -153,6 +154,7 @@
     <ClCompile Include="Examples\Ex_Lighting.cpp" />
     <ClCompile Include="Examples\Ex_Lighting_Cast.cpp" />
     <ClCompile Include="Examples\Ex_Lighting_Tex.cpp" />
+    <ClCompile Include="Examples\Ex_ModelImport.cpp" />
     <ClCompile Include="Examples\FaceBox.cpp" />
     <ClCompile Include="Examples\Triangle.cpp" />
     <ClCompile Include="main.cpp" />
@@ -185,6 +187,7 @@
     <ClInclude Include="Base\CompGlfwImpl\GLFWTimer.h" />
     <ClInclude Include="Base\Image.h" />
     <ClInclude Include="Base\interface\ITimer.h" />
+    <ClInclude Include="Base\Model.h" />
     <ClInclude Include="Base\ProjetInit.hpp" />
     <ClInclude Include="Base\ResourceLoader.h" />
     <ClInclude Include="Base\Singleton.h" />
@@ -202,6 +205,7 @@
     <ClInclude Include="Examples\Ex_Lighting.h" />
     <ClInclude Include="Examples\Ex_Lighting_Cast.h" />
     <ClInclude Include="Examples\Ex_Lighting_Tex.h" />
+    <ClInclude Include="Examples\Ex_ModelImport.h" />
     <ClInclude Include="Examples\FaceBox.h" />
     <ClInclude Include="Examples\Triangle.h" />
     <ClInclude Include="GLEnvHeader.h" />

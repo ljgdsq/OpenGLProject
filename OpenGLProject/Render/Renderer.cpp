@@ -1,6 +1,8 @@
 #include "Renderer.h"
 #include "../Utils/ScreenViewUtil.h"
 #include "../Base/World.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 Renderer::Renderer()
 {
     VAO = 0;
@@ -33,7 +35,10 @@ void Renderer::Draw()
 {
 #if _DEBUG
     indicatorShader->Use();
-    ScreenViewUtil::GetInstance()->SetUpShaderViewMatrix(World::GetInstance()->GetMainCamera(),indicatorShader);
+    glm::mat4 model(1.0f);
+    model = glm::scale(model, glm::vec3(9999, 9999, 9999));
+    shader->SetModelMat4f(model);
+    ScreenViewUtil::GetInstance()->SetUpShaderVPMatrix(World::GetInstance()->GetMainCamera(),indicatorShader);
     glBindVertexArray(indicatorVAO);
     indicatorShader->SetVec3f("objectColor", glm::vec3(1.0, 0, 0));
     glDrawArrays(GL_LINES, 0, 2);

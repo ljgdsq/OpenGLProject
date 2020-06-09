@@ -165,6 +165,8 @@ void Shader::SetModelMat4f(glm::mat4x4 mat)
     SetMat4f(modelStr, mat);
 }
 
+
+
 void Shader::SetViewMat4f(glm::mat4x4 mat)
 {
     SetMat4f(viewStr, mat);

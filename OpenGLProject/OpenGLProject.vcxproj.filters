@@ -123,6 +123,12 @@
     <ClCompile Include="Examples\Ex_DynamicPolygon.cpp">
       <Filter>Examples</Filter>
     </ClCompile>
+    <ClCompile Include="Base\Model.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Ex_ModelImport.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.MD" />
@@ -264,6 +270,12 @@
       <Filter>Utils</Filter>
     </ClInclude>
     <ClInclude Include="Examples\Ex_DynamicPolygon.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\Model.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Ex_ModelImport.h">
       <Filter>Examples</Filter>
     </ClInclude>
   </ItemGroup>

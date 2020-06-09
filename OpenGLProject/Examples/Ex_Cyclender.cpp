@@ -82,7 +82,7 @@ void Ex_Cyclender::InitData()
 )";
 
     vertexCount = 100;
-    height = 0.9;
+    height = 0.9f;
     Vec3* vertices = new Vec3[vertexCount + 2];
 
     float step = 360.0f / vertexCount;
