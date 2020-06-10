@@ -7,5 +7,7 @@ public:
     unsigned int tex1;
     unsigned int tex2;
     unsigned int planeVAO, planeVBO;
+
+    Shader* borderShader;
 };
 

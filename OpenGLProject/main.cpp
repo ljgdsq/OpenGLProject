@@ -135,32 +135,10 @@ int main(int argc, char** argv)
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetScrollCallback(window, mouse_scroll);
-    //auto logUtil=LogUtil::GetInstance();
-    //logUtil->Error("some error");
-    //logUtil->Warn("some warn");
-    //logUtil->Info("some info");
-    //logUtil->SetLogLevel(LogUtil::WARN);
-    //logUtil->Error("some error");
-    //logUtil->Warn("some warn");
-    //logUtil->Info("some info");
-    //Renderer* triangle = new Triangle();
-
-
-    //Renderer* triangle = new ColorTriangle();
-
-   // Renderer* render = new Ex1_1();
-    //Renderer* render = new Ex2_1();
-    //Renderer* render = new Ex2_2();
-   // Renderer* render = new Ex3_1();
-    //Renderer* render = new Ex3_2();
-    //FaceBox* render = new FaceBox();
-    //Ex_Lighting* render = new Ex_Lighting();
-    //Ex_Lighting_Tex* render = new Ex_Lighting_Tex();
-    //Ex_Lighting_Cast* render = new Ex_Lighting_Cast();
-    //Ex_Cyclender* render = new Ex_Cyclender();
+    
     InitExamples();
     // Renderer* render = ExampleBase::GetExample("Ex_DepthTest");
-    Renderer* render = ExampleBase::GetLastExample();
+    Renderer* render =ExampleFactory::GetLastExample();
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_ALPHA_TEST);
     //glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);

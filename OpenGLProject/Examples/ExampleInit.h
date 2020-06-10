@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ExampleBase.h"
+#include "ExampleFactory.h"
 
 #include "Triangle.h"
 #include "ColorTriangle.h"

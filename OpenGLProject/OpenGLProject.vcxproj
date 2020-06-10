@@ -149,7 +149,7 @@
     <ClCompile Include="Examples\Ex2_2.cpp" />
     <ClCompile Include="Examples\Ex3_1.cpp" />
     <ClCompile Include="Examples\Ex3_2.cpp" />
-    <ClCompile Include="Examples\ExampleBase.cpp" />
+    <ClCompile Include="Examples\ExampleFactory.cpp" />
     <ClCompile Include="Examples\Ex_Cyclender.cpp" />
     <ClCompile Include="Examples\Ex_DepthTest.cpp" />
     <ClCompile Include="Examples\Ex_DynamicPolygon.cpp" />
@@ -172,8 +172,9 @@
     <ClCompile Include="Utils\StringUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.MD" />
+    <None Include="..\README.MD" />
     <None Include="Render\ShaderSources\fragment_base.frag" />
+    <None Include="Render\ShaderSources\fragment_base_tex.frag" />
     <None Include="Render\ShaderSources\fragment_base_tex2.frag" />
     <None Include="Render\ShaderSources\fragment_pcolor.frag" />
     <None Include="Render\ShaderSources\fragment_pcolor_tex.frag" />
@@ -204,7 +205,7 @@
     <ClInclude Include="Examples\Ex2_2.h" />
     <ClInclude Include="Examples\Ex3_1.h" />
     <ClInclude Include="Examples\Ex3_2.h" />
-    <ClInclude Include="Examples\ExampleBase.h" />
+    <ClInclude Include="Examples\ExampleFactory.h" />
     <ClInclude Include="Examples\ExampleCommomHeader.h" />
     <ClInclude Include="Examples\ExampleInit.h" />
     <ClInclude Include="Examples\Ex_Cyclender.h" />

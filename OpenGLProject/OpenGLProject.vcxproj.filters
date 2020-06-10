@@ -135,18 +135,17 @@
     <ClCompile Include="Examples\Ex_DepthTest.cpp">
       <Filter>Examples</Filter>
     </ClCompile>
-    <ClCompile Include="Examples\ExampleBase.cpp">
-      <Filter>Examples</Filter>
-    </ClCompile>
     <ClCompile Include="Examples\Ex_StencilTest.cpp">
       <Filter>Examples</Filter>
     </ClCompile>
     <ClCompile Include="shape\WorldIndicator.cpp">
       <Filter>Shape</Filter>
     </ClCompile>
+    <ClCompile Include="Examples\ExampleFactory.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.MD" />
     <None Include="Render\ShaderSources\fragment_base.frag">
       <Filter>Render\ShaderSources</Filter>
     </None>
@@ -174,6 +173,10 @@
     <None Include="Render\ShaderSources\vertex_pcolor_tex_mvp.vert">
       <Filter>Render\ShaderSources</Filter>
     </None>
+    <None Include="Render\ShaderSources\fragment_base_tex.frag">
+      <Filter>Render\ShaderSources</Filter>
+    </None>
+    <None Include="..\README.MD" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Render\Shader.h">
@@ -296,9 +299,6 @@
     <ClInclude Include="Examples\Ex_DepthTest.h">
       <Filter>Examples</Filter>
     </ClInclude>
-    <ClInclude Include="Examples\ExampleBase.h">
-      <Filter>Examples</Filter>
-    </ClInclude>
     <ClInclude Include="Examples\ExampleInit.h">
       <Filter>Examples</Filter>
     </ClInclude>
@@ -310,6 +310,9 @@
     </ClInclude>
     <ClInclude Include="shape\WorldIndicator.h">
       <Filter>Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\ExampleFactory.h">
+      <Filter>Examples</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
