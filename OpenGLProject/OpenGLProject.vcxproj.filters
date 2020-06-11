@@ -138,11 +138,23 @@
     <ClCompile Include="Examples\Ex_StencilTest.cpp">
       <Filter>Examples</Filter>
     </ClCompile>
-    <ClCompile Include="shape\WorldIndicator.cpp">
-      <Filter>Shape</Filter>
-    </ClCompile>
     <ClCompile Include="Examples\ExampleFactory.cpp">
       <Filter>Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Ex_Blending.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Ex_FrameBuffer.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\Cube.cpp">
+      <Filter>Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\Plane.cpp">
+      <Filter>Shape</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape\WorldIndicator.cpp">
+      <Filter>Shape</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -308,11 +320,23 @@
     <ClInclude Include="Examples\Ex_StencilTest.h">
       <Filter>Examples</Filter>
     </ClInclude>
-    <ClInclude Include="shape\WorldIndicator.h">
-      <Filter>Shape</Filter>
-    </ClInclude>
     <ClInclude Include="Examples\ExampleFactory.h">
       <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Ex_Blending.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Ex_FrameBuffer.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Cube.h">
+      <Filter>Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\Plane.h">
+      <Filter>Shape</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape\WorldIndicator.h">
+      <Filter>Shape</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

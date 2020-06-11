@@ -150,9 +150,11 @@
     <ClCompile Include="Examples\Ex3_1.cpp" />
     <ClCompile Include="Examples\Ex3_2.cpp" />
     <ClCompile Include="Examples\ExampleFactory.cpp" />
+    <ClCompile Include="Examples\Ex_Blending.cpp" />
     <ClCompile Include="Examples\Ex_Cyclender.cpp" />
     <ClCompile Include="Examples\Ex_DepthTest.cpp" />
     <ClCompile Include="Examples\Ex_DynamicPolygon.cpp" />
+    <ClCompile Include="Examples\Ex_FrameBuffer.cpp" />
     <ClCompile Include="Examples\Ex_Lighting.cpp" />
     <ClCompile Include="Examples\Ex_Lighting_Cast.cpp" />
     <ClCompile Include="Examples\Ex_Lighting_Tex.cpp" />
@@ -164,7 +166,9 @@
     <ClCompile Include="Render\Renderer.cpp" />
     <ClCompile Include="Render\Shader.cpp" />
     <ClCompile Include="Render\ShaderSources\ShaderSources.cpp" />
-    <ClCompile Include="shape\WorldIndicator.cpp" />
+    <ClCompile Include="Shape\Cube.cpp" />
+    <ClCompile Include="Shape\Plane.cpp" />
+    <ClCompile Include="Shape\WorldIndicator.cpp" />
     <ClCompile Include="Utils\FileUtil.cpp" />
     <ClCompile Include="Utils\InIReader.cpp" />
     <ClCompile Include="Utils\LogUtil.cpp" />
@@ -208,9 +212,11 @@
     <ClInclude Include="Examples\ExampleFactory.h" />
     <ClInclude Include="Examples\ExampleCommomHeader.h" />
     <ClInclude Include="Examples\ExampleInit.h" />
+    <ClInclude Include="Examples\Ex_Blending.h" />
     <ClInclude Include="Examples\Ex_Cyclender.h" />
     <ClInclude Include="Examples\Ex_DepthTest.h" />
     <ClInclude Include="Examples\Ex_DynamicPolygon.h" />
+    <ClInclude Include="Examples\Ex_FrameBuffer.h" />
     <ClInclude Include="Examples\Ex_Lighting.h" />
     <ClInclude Include="Examples\Ex_Lighting_Cast.h" />
     <ClInclude Include="Examples\Ex_Lighting_Tex.h" />
@@ -223,7 +229,9 @@
     <ClInclude Include="Render\Renderer.h" />
     <ClInclude Include="Render\Shader.h" />
     <ClInclude Include="Render\ShaderSources\ShaderSources.h" />
-    <ClInclude Include="shape\WorldIndicator.h" />
+    <ClInclude Include="Shape\Cube.h" />
+    <ClInclude Include="Shape\Plane.h" />
+    <ClInclude Include="Shape\WorldIndicator.h" />
     <ClInclude Include="Utils\FileUtil.h" />
     <ClInclude Include="Utils\GLEnvInfo.hpp" />
     <ClInclude Include="Utils\InIReader.h" />

@@ -137,12 +137,10 @@ int main(int argc, char** argv)
     glfwSetScrollCallback(window, mouse_scroll);
     
     InitExamples();
-    // Renderer* render = ExampleBase::GetExample("Ex_DepthTest");
     Renderer* render =ExampleFactory::GetLastExample();
     glEnable(GL_DEPTH_TEST);
-    glEnable(GL_ALPHA_TEST);
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
-
+    //glEnable(GL_CULL_FACE);
+    //glCullFace(GL_BACK);
     auto indicator = new WorldIndicator();
     while (!glfwWindowShouldClose(window))
     {
@@ -153,13 +151,14 @@ int main(int argc, char** argv)
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT| GL_STENCIL_BUFFER_BIT);
-
+        indicator->Draw();
         if (render)
         {
             render->Draw();
         }
-
-        indicator->Draw();
+    
+      
+        //glDisable(GL_DEPTH_TEST);
 
         glfwSwapBuffers(window);
         glfwPollEvents();

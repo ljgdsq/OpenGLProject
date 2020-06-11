@@ -1,4 +1,4 @@
-#include "ExampleBase.h"
+#include "ExampleFactory.h"
 
 
 std::map<std::string, Renderer*> ExampleFactory::examples;

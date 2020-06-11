@@ -1,12 +1,23 @@
-#include "Ex_StencilTest.h"
+#include "Ex_Blending.h"
 #include "../CommonData.h"
 #include "../Base/ResourceLoader.h"
 #include "../Utils/ScreenViewUtil.h"
 #include "../Base/Camera.hpp"
-RENDERER_BASE_CONSTRUCTOR_IMPL(Ex_StencilTest)
+#include "../Shape/Cube.h"
+#include "../Shape/Plane.h"
+#include <vector>
+RENDERER_BASE_CONSTRUCTOR_IMPL(Ex_Blending)
 
-void Ex_StencilTest::InitData()
+void Ex_Blending::InitData()
 {
+
+    vegetation.push_back(glm::vec3(-1.5f, 0.0f, -0.48f));
+    vegetation.push_back(glm::vec3(1.5f, 0.0f, 0.51f));
+    vegetation.push_back(glm::vec3(0.0f, 0.0f, 0.7f));
+    vegetation.push_back(glm::vec3(-0.3f, 0.0f, -2.3f));
+    vegetation.push_back(glm::vec3(0.5f, 0.0f, -0.6f));
+
+ 
     const char* vShader = R"(
 
         #version 330 core
@@ -47,23 +58,33 @@ void Ex_StencilTest::InitData()
         uniform mat4 model;
         uniform mat4 view;
         uniform mat4 projection;
+        out vec2 TexCoord;
         void main()
         {
+            TexCoord=aTexCoords;
             gl_Position = projection * view * model * vec4(aPos, 1.0);
         }
    )";
 
-    const char* borderFragment = R"(
-        #version 330 core
-        out vec4 FragColor;
-        void main()
-        {    
-            FragColor = vec4(0.4,0.5,0.6,1.0);
-        }
+    const char* grassFragment= R"(
+	    #version 330 core
+	    in vec2 TexCoord;
+	    out vec4 FragColor;
+
+        uniform sampler2D ourTexture;
+	    void main()
+	    {
+               vec4 color=texture(ourTexture, TexCoord);
+               /* if(color.a<0.1)
+                    discard;*/
+		      FragColor = color;
+		  // FragColor=vec4(0.7,0.5,1,1);
+	    }
     )";
 
-    borderShader = new Shader(borderVertex, borderFragment);
+
     shader->CreateShaderProgram(vShader, fShader);
+    grassShader = new Shader(borderVertex, grassFragment);
     float planeVertices[] = {
          5.0f, -0.5f,  5.0f,  2.0f, 0.0f,
         -5.0f, -0.5f,  5.0f,  0.0f, 0.0f,
@@ -97,46 +118,69 @@ void Ex_StencilTest::InitData()
     glBindVertexArray(0);
 
 
+    glGenVertexArrays(1, &grassVAO);
+    glGenBuffers(1, &grassVBO);
+    glGenBuffers(1, &grassEBO);
+    glBindVertexArray(grassVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, grassVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(plane_vert_texl), &plane_vert_texl, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 5, (void*)0);
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 5, (void*)(sizeof(float) * 3));
+   
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, grassEBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(plane_indices), &plane_indices, GL_STATIC_DRAW);
+
+    glBindVertexArray(0);
+
+
     auto image1 = ResourceLoader::GetInstance()->LoadImage("marble.jpg");
     auto image2 = ResourceLoader::GetInstance()->LoadImage("wood.png");
+    auto image3 = ResourceLoader::GetInstance()->LoadImage("grass.png");
 
+    image3->SetRepeatMode(Image::CLAMP_TO_EDGE);
     tex1 = image1->GetTexture();
     tex2 = image2->GetTexture();
-    shader->Use();
+    tex3 = image3->GetTexture();
+
 
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, tex1);
     glActiveTexture(GL_TEXTURE0 + 1);
     glBindTexture(GL_TEXTURE_2D, tex2);
+    glActiveTexture(GL_TEXTURE0 + 2);
+    glBindTexture(GL_TEXTURE_2D, tex3);
+    
 
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_STENCIL_TEST);
+    cube = new Cube("wood.png");
+    plane = new Plane("wall.jpg");
+    glDisable(GL_CULL_FACE);
 }
-
-
-void Ex_StencilTest::Draw()
+void Ex_Blending::Draw()
 {
     glEnable(GL_DEPTH_TEST);
-    glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
+    glEnable(GL_BLEND);
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+    plane->Draw();
+    cube->Draw();
     shader->Use();
-
     ScreenViewUtil::GetInstance()->SetUpShaderVPMatrix(shader);
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
     shader->SetModelMat4f(model);
-
-    glStencilMask(0x00);
-    shader->SetInt("texture1", 1);
     glBindVertexArray(planeVAO);
-    glDrawArrays(GL_TRIANGLES, 0, 6);
+    glActiveTexture(GL_TEXTURE0 + 1);
+    glBindTexture(GL_TEXTURE_2D, tex2);
+    shader->SetInt("texture1", 1);
+
+  //  glDrawArrays(GL_TRIANGLES, 0, 6);
     glBindVertexArray(0);
     model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
+    model = glm::translate(model, glm::vec3(-1.0f, 0.0f, 0.0f));
 
-    glStencilFunc(GL_ALWAYS, 1, 0xFF);
-    glStencilMask(0xff);
+    glActiveTexture(GL_TEXTURE0 + 0);
+    glBindTexture(GL_TEXTURE_2D, tex1);
     shader->SetInt("texture1", 0);
     glBindVertexArray(VAO);
     glDrawArrays(GL_TRIANGLES, 0, 36);
@@ -146,27 +190,31 @@ void Ex_StencilTest::Draw()
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
   
-    glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
-    glStencilMask(0x00);
-    glDisable(GL_DEPTH_TEST);
-    borderShader->Use();
-    ScreenViewUtil::GetInstance()->SetUpShaderVPMatrix(borderShader);
-    model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
-    model = glm::scale(model, glm::vec3(1.1f,1.1f,1.1f));
-    shader->SetModelMat4f(model);
+    //glBlendFunc(GL_ONE, GL_ZERO);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glBindVertexArray(VAO);
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+    glActiveTexture(GL_TEXTURE0 + 2);
+    glBindTexture(GL_TEXTURE_2D, tex3);
+    glBindVertexArray(grassVAO);
+    grassShader->Use();
+    ScreenViewUtil::GetInstance()->SetUpShaderVPMatrix(grassShader);
+    grassShader->SetInt("ourTexture", 2);
 
-    model = glm::mat4(1.0f);
-    model = glm::translate(model, glm::vec3(1.0f, 0.0f, -1.0f));
-    model = glm::scale(model, glm::vec3(1.1f, 1.1f, 1.1f));
-    borderShader->SetModelMat4f(model);
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+    vegetationMap.clear();
+    for (int i = 0; i < vegetation.size(); i++)
+    {
+        auto distance = glm::length(Camera::MainCamera->position - vegetation[i]);
+        vegetationMap[distance] = vegetation[i];
+    }
+    
 
-    glStencilMask(0xFF);
-    glEnable(GL_DEPTH_TEST);
+    for (auto it=vegetationMap.rbegin();it!=vegetationMap.rend();it++)
+    {
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, it->second);
+        grassShader->SetModelMat4f(model);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    }
+
+    
 }
-
-

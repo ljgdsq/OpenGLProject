@@ -60,5 +60,13 @@ public:
     void SetGenMipmap(bool gen);
     void GenTexture();
     void Use();
+
+    static Image* GetBlankImage();
+    static Image* GetBlackImage();
+    static Image* GetWhiteImage();
+private:
+    static Image* blank32;
+    static Image* black32;
+    static Image* white32;
 };
 

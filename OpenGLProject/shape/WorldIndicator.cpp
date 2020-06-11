@@ -9,7 +9,6 @@ void WorldIndicator::InitData()
 #if _DEBUG
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
-    shader = new Shader();
     const char* vertexShader = R"(
 	#version 330 core
 	layout(location=0) in vec3 aPos;
@@ -49,6 +48,7 @@ void WorldIndicator::InitData()
 void WorldIndicator::Draw()
 {
 #if _DEBUG
+
     shader->Use();
     glm::mat4 model(1.0f);
     model = glm::scale(model, glm::vec3(9999, 9999, 9999));

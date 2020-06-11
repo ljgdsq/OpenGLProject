@@ -21,8 +21,10 @@
 
 #include "Ex_DepthTest.h"
 #include "Ex_StencilTest.h"
+#include "Ex_Blending.h"
 void InitExamples() {
   ADD_EXAMPLE(Ex_DepthTest);
   ADD_EXAMPLE(Ex_StencilTest);
+  ADD_EXAMPLE(Ex_Blending);
 
 }

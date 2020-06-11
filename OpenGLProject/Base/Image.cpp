@@ -1,11 +1,17 @@
 #include "Image.h"
 #include "../Utils/LogUtil.h"
+#include "../Base/ResourceLoader.h"
 #include <cstdlib>
+
+Image* Image::black32 = nullptr;
+Image* Image::blank32 = nullptr;
+Image* Image::white32 = nullptr;
+
 void Image::GenTexture()
 {
     if (texture!= GL_INVALID_VALUE)
     {
-        LogUtil::GetInstance()->Error("Image already generated texture!");
+        LogUtil::GetInstance()->Info("Image already generated texture!");
         return;
     }
     glGenTextures(1, &texture);
@@ -89,4 +95,34 @@ void Image::SetGenMipmap(bool gen)
 void Image::Use()
 {
     glBindTexture(GL_TEXTURE_2D, texture);
+}
+
+Image* Image::GetBlankImage()
+{
+    if (blank32==nullptr)
+    {
+        blank32=ResourceLoader::GetInstance()->LoadImage("blank32.png");
+        blank32->GenTexture();
+    }
+    return blank32;
+}
+
+Image* Image::GetBlackImage()
+{
+    if (black32 == nullptr)
+    {
+        black32 = ResourceLoader::GetInstance()->LoadImage("black32.png");
+        black32->GenTexture();
+    }
+    return black32;
+}
+
+Image* Image::GetWhiteImage()
+{
+    if (white32 == nullptr)
+    {
+        white32 = ResourceLoader::GetInstance()->LoadImage("white32.png");
+        white32->GenTexture();
+    }
+    return white32;
 }
