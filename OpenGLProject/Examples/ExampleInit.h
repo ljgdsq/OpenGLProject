@@ -22,9 +22,12 @@
 #include "Ex_DepthTest.h"
 #include "Ex_StencilTest.h"
 #include "Ex_Blending.h"
+#include "Ex_FrameBuffer.h"
+
 void InitExamples() {
   ADD_EXAMPLE(Ex_DepthTest);
   ADD_EXAMPLE(Ex_StencilTest);
   ADD_EXAMPLE(Ex_Blending);
+  ADD_EXAMPLE(Ex_FrameBuffer);
 
 }

@@ -2,7 +2,7 @@
 #include "ShaderSources/ShaderSources.h"
 #include <glad/glad.h>
 #include <string>
-
+#include <map>
 #include <glm/glm.hpp>
 class Shader
 {
@@ -40,5 +40,11 @@ public:
     void SetModelMat4f(glm::mat4x4 mat);
     void SetViewMat4f(glm::mat4x4 mat);
     void SetProjectionMat4f(glm::mat4x4 mat);
+
+    static Shader* FindShader(const std::string name);
+    static bool AddShader(const std::string name,Shader*shader);
+    static bool RemoveShader(const std::string name);
+private:
+    static std::map<std::string, Shader*> _cachedShader;
 };
 

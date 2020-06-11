@@ -1,5 +1,5 @@
 #include "World.h"
-
+#include "../Render/Shader.h"
 ITimer* World::GetTimer()
 {
     return _timer;
@@ -27,3 +27,4 @@ void World::InitWorld(ITimer* timer, AbstractInputController* inputController, R
     this->_resourceLoader = resourceLoader;
     this->_mainCamera = camera;
 }
+

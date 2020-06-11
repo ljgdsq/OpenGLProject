@@ -164,6 +164,7 @@
     <ClCompile Include="Examples\Triangle.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Render\Renderer.cpp" />
+    <ClCompile Include="Render\ScreenRenderer.cpp" />
     <ClCompile Include="Render\Shader.cpp" />
     <ClCompile Include="Render\ShaderSources\ShaderSources.cpp" />
     <ClCompile Include="Shape\Cube.cpp" />
@@ -227,6 +228,7 @@
     <ClInclude Include="GLEnvHeader.h" />
     <ClInclude Include="Macro.h" />
     <ClInclude Include="Render\Renderer.h" />
+    <ClInclude Include="Render\ScreenRenderer.h" />
     <ClInclude Include="Render\Shader.h" />
     <ClInclude Include="Render\ShaderSources\ShaderSources.h" />
     <ClInclude Include="Shape\Cube.h" />

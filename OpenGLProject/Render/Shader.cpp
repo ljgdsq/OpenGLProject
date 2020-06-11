@@ -10,6 +10,7 @@ const char* Shader::modelStr = "model";
 const char* Shader::viewStr = "view";
 const char* Shader::projectionStr = "projection";
 
+std::map<std::string, Shader*> Shader::_cachedShader;
 Shader::Shader(const char* vertexShaderSource, const char* fragmentShaderSource, bool needDeleteAfterCompile)
 {
     shaderProgram = INVALID_SHADER;
@@ -175,4 +176,34 @@ void Shader::SetViewMat4f(glm::mat4x4 mat)
 void Shader::SetProjectionMat4f(glm::mat4x4 mat)
 {
     SetMat4f(projectionStr, mat);
+}
+
+Shader* Shader::FindShader(const std::string name)
+{
+    auto it=_cachedShader.find(name);
+    if (it!=_cachedShader.end())
+    {
+        return it->second;
+    }
+    return nullptr;
+}
+
+bool Shader::AddShader(const std::string name, Shader* shader)
+{
+    if (shader && FindShader(name))
+    {
+        _cachedShader.insert({name,shader});
+        return true;
+    }
+    return false;
+}
+
+bool Shader::RemoveShader(const std::string name)
+{
+    auto c=_cachedShader.erase(name);
+    if (c)
+    {
+        return true;
+    }
+    return false;
 }

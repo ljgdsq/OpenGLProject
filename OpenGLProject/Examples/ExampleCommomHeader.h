@@ -4,3 +4,4 @@
 #include "../Base/Camera.hpp"
 #include "../Utils/LogUtil.h"
 #include "../Utils/ScreenViewUtil.h"
+#include "../Base/BaseStruct.hpp"
