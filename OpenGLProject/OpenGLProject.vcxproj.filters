@@ -165,6 +165,9 @@
     <ClCompile Include="Render\ShaderSources\ShaderSources.cpp">
       <Filter>Render\ShaderSources</Filter>
     </ClCompile>
+    <ClCompile Include="Examples\Ex_EnvReflectAndRefract.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.MD" />
@@ -355,6 +358,9 @@
     </ClInclude>
     <ClInclude Include="Render\ShaderSources\ShaderSources.h">
       <Filter>Render\ShaderSources</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Ex_EnvReflectAndRefract.h">
+      <Filter>Examples</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

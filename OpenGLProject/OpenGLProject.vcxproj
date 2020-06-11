@@ -154,6 +154,7 @@
     <ClCompile Include="Examples\Ex_Cyclender.cpp" />
     <ClCompile Include="Examples\Ex_DepthTest.cpp" />
     <ClCompile Include="Examples\Ex_DynamicPolygon.cpp" />
+    <ClCompile Include="Examples\Ex_EnvReflectAndRefract.cpp" />
     <ClCompile Include="Examples\Ex_FrameBuffer.cpp" />
     <ClCompile Include="Examples\Ex_Lighting.cpp" />
     <ClCompile Include="Examples\Ex_Lighting_Cast.cpp" />
@@ -219,6 +220,7 @@
     <ClInclude Include="Examples\Ex_Cyclender.h" />
     <ClInclude Include="Examples\Ex_DepthTest.h" />
     <ClInclude Include="Examples\Ex_DynamicPolygon.h" />
+    <ClInclude Include="Examples\Ex_EnvReflectAndRefract.h" />
     <ClInclude Include="Examples\Ex_FrameBuffer.h" />
     <ClInclude Include="Examples\Ex_Lighting.h" />
     <ClInclude Include="Examples\Ex_Lighting_Cast.h" />

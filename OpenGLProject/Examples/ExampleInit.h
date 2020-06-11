@@ -24,11 +24,15 @@
 #include "Ex_Blending.h"
 #include "Ex_FrameBuffer.h"
 #include "Ex_Skybox.h"
+#include "Ex_EnvReflectAndRefract.h"
+
 void InitExamples() {
   //ADD_EXAMPLE(Ex_DepthTest);
   //ADD_EXAMPLE(Ex_StencilTest);
   //ADD_EXAMPLE(Ex_Blending);
   //ADD_EXAMPLE(Ex_FrameBuffer);
-  ADD_EXAMPLE(Ex_Skybox);
+  //ADD_EXAMPLE(Ex_Skybox);
+  //ADD_EXAMPLE(Ex_EnvReflectAndRefract);
+  ADD_EXAMPLE(Ex_DynamicPolygon);
 
 }

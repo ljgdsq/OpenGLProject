@@ -12,7 +12,7 @@
 #include <exception>
 Ex_DynamicPolygon::Ex_DynamicPolygon()
 {
-    throw new std::exception(); //TODO fix this ex use dynamic data
+
     InitData();
 }
 void Ex_DynamicPolygon::Draw()
@@ -52,7 +52,7 @@ void Ex_DynamicPolygon::Draw()
     glDrawArrays(GL_TRIANGLE_FAN, 0, vertexCount + 2);
 
 
-    ChangeData();
+  ChangeData();
 }
 
 
@@ -92,7 +92,36 @@ void Ex_DynamicPolygon::InitData()
     time = 0;
     changeSpeed = 1.0f;
     isDirty = true;
-    glDisable(GL_CULL_FACE);
+    height = 0.9f;
+  
+    vertexCount = curSide;
+
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+
+    glBindVertexArray(VAO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Vec3) * (maxSide + 2), nullptr, GL_DYNAMIC_DRAW);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    
+
+    glGenVertexArrays(1, &sideVAO);
+    glGenBuffers(1, &sideVBO);
+    glGenBuffers(1, &sideEBO);
+
+    glBindVertexArray(sideVAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, sideVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Vec3) * (maxSide + 1) * 2, nullptr, GL_DYNAMIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vec3), (void*)0);
+    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, sideEBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * maxSide * 6, nullptr, GL_DYNAMIC_DRAW);
+    ChangeData();
 }
 
 void Ex_DynamicPolygon::ChangeData()
@@ -104,7 +133,6 @@ void Ex_DynamicPolygon::ChangeData()
         time = 0;
         curSide++;
         isDirty = true;
-
         if (curSide > maxSide)
         {
             curSide = minSide;
@@ -116,11 +144,8 @@ void Ex_DynamicPolygon::ChangeData()
         return;
     }
 
-
     vertexCount = curSide;
-    height = 0.9f;
     Vec3* vertices = new Vec3[vertexCount + 2];
-
     float step = 360.0f / vertexCount;
     for (int i = 1; i <= vertexCount; i++)
     {
@@ -130,20 +155,6 @@ void Ex_DynamicPolygon::ChangeData()
     }
     vertices[0] = Vec3(0, 0, 0);
     vertices[vertexCount + 1] = vertices[1];
-
-
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
-
-    glBindVertexArray(VAO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(Vec3) * (vertexCount + 2), vertices, GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    //glEnable(GL_BLEND);
 
     Vec3* vertices2 = new Vec3[vertexCount + 2];
 
@@ -174,22 +185,18 @@ void Ex_DynamicPolygon::ChangeData()
         indices[i * 6 + 5] = 2 * i + 3;
     }
 
-    glGenVertexArrays(1, &sideVAO);
-    glGenBuffers(1, &sideVBO);
-    glGenBuffers(1, &sideEBO);
+
+    glBindVertexArray(VAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferSubData(GL_ARRAY_BUFFER, 0,sizeof(Vec3)* (vertexCount+2), vertices);
 
     glBindVertexArray(sideVAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, sideVBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(Vec3) * (vertexCount + 1) * 2, &sides[0], GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vec3), (void*)0);
-    glEnableVertexAttribArray(0);
+    glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(Vec3) * (vertexCount + 1)*2, sides);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, sideEBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * vertexCount * 6, &indices[0], GL_STATIC_DRAW);
+    glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, sizeof(unsigned int) * vertexCount * 6, indices);
 
-
-    isDirty = false;
-   
 }
