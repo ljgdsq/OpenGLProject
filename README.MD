@@ -13,3 +13,7 @@
 ### refactor project (model part and base part use different concept  like texture )
 ### model  add lighting
 ### extract lighting code 
+### extract base shape like : cube 2dsprite
+### vertex data fix , cut back
+### Resource cache 
+### freambuffer extension:draw depth buffer and stencil buffer

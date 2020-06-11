@@ -32,10 +32,10 @@
       <UniqueIdentifier>{3bc496ed-7b8d-4e96-a442-7343f9625dda}</UniqueIdentifier>
     </Filter>
     <Filter Include="Render">
-      <UniqueIdentifier>{f1c3315b-901b-4623-9dbb-60df6c195af3}</UniqueIdentifier>
+      <UniqueIdentifier>{7d2198b6-9571-4a1b-8936-d7cd953707b8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Render\ShaderSources">
-      <UniqueIdentifier>{96dd3fe6-da77-4f9d-a41d-bc515b6bce6d}</UniqueIdentifier>
+      <UniqueIdentifier>{f26f5c38-a218-487f-80e2-3d506f14153e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -147,6 +147,9 @@
     <ClCompile Include="Shape\WorldIndicator.cpp">
       <Filter>Shape</Filter>
     </ClCompile>
+    <ClCompile Include="Examples\Ex_Skybox.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
     <ClCompile Include="Render\Renderer.cpp">
       <Filter>Render</Filter>
     </ClCompile>
@@ -154,6 +157,9 @@
       <Filter>Render</Filter>
     </ClCompile>
     <ClCompile Include="Render\Shader.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\Skybox.cpp">
       <Filter>Render</Filter>
     </ClCompile>
     <ClCompile Include="Render\ShaderSources\ShaderSources.cpp">
@@ -332,6 +338,9 @@
     <ClInclude Include="Shape\WorldIndicator.h">
       <Filter>Shape</Filter>
     </ClInclude>
+    <ClInclude Include="Examples\Ex_Skybox.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
     <ClInclude Include="Render\Renderer.h">
       <Filter>Render</Filter>
     </ClInclude>
@@ -339,6 +348,9 @@
       <Filter>Render</Filter>
     </ClInclude>
     <ClInclude Include="Render\Shader.h">
+      <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\Skybox.h">
       <Filter>Render</Filter>
     </ClInclude>
     <ClInclude Include="Render\ShaderSources\ShaderSources.h">

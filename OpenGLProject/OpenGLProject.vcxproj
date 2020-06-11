@@ -159,6 +159,7 @@
     <ClCompile Include="Examples\Ex_Lighting_Cast.cpp" />
     <ClCompile Include="Examples\Ex_Lighting_Tex.cpp" />
     <ClCompile Include="Examples\Ex_ModelImport.cpp" />
+    <ClCompile Include="Examples\Ex_Skybox.cpp" />
     <ClCompile Include="Examples\Ex_StencilTest.cpp" />
     <ClCompile Include="Examples\FaceBox.cpp" />
     <ClCompile Include="Examples\Triangle.cpp" />
@@ -167,6 +168,7 @@
     <ClCompile Include="Render\ScreenRenderer.cpp" />
     <ClCompile Include="Render\Shader.cpp" />
     <ClCompile Include="Render\ShaderSources\ShaderSources.cpp" />
+    <ClCompile Include="Render\Skybox.cpp" />
     <ClCompile Include="Shape\Cube.cpp" />
     <ClCompile Include="Shape\Plane.cpp" />
     <ClCompile Include="Shape\WorldIndicator.cpp" />
@@ -222,6 +224,7 @@
     <ClInclude Include="Examples\Ex_Lighting_Cast.h" />
     <ClInclude Include="Examples\Ex_Lighting_Tex.h" />
     <ClInclude Include="Examples\Ex_ModelImport.h" />
+    <ClInclude Include="Examples\Ex_Skybox.h" />
     <ClInclude Include="Examples\Ex_StencilTest.h" />
     <ClInclude Include="Examples\FaceBox.h" />
     <ClInclude Include="Examples\Triangle.h" />
@@ -231,6 +234,7 @@
     <ClInclude Include="Render\ScreenRenderer.h" />
     <ClInclude Include="Render\Shader.h" />
     <ClInclude Include="Render\ShaderSources\ShaderSources.h" />
+    <ClInclude Include="Render\Skybox.h" />
     <ClInclude Include="Shape\Cube.h" />
     <ClInclude Include="Shape\Plane.h" />
     <ClInclude Include="Shape\WorldIndicator.h" />

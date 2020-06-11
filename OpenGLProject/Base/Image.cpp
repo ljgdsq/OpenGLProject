@@ -17,11 +17,8 @@ void Image::GenTexture()
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
 
-
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, repeatMode);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, repeatMode);
-
-
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filterMode);
 
