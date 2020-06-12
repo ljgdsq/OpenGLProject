@@ -26,6 +26,8 @@
 #include "Ex_Skybox.h"
 #include "Ex_EnvReflectAndRefract.h"
 
+#include "Ex_Instancing.h"
+#include "Ex_PlanetInstancing.h"
 void InitExamples() {
   //ADD_EXAMPLE(Ex_DepthTest);
   //ADD_EXAMPLE(Ex_StencilTest);
@@ -33,6 +35,8 @@ void InitExamples() {
   //ADD_EXAMPLE(Ex_FrameBuffer);
   //ADD_EXAMPLE(Ex_Skybox);
   //ADD_EXAMPLE(Ex_EnvReflectAndRefract);
-  ADD_EXAMPLE(Ex_DynamicPolygon);
+  //ADD_EXAMPLE(Ex_DynamicPolygon);
+  //ADD_EXAMPLE(Ex_Instancing);
+  ADD_EXAMPLE(Ex_PlanetInstancing);
 
 }

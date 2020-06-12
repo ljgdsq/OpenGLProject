@@ -168,6 +168,12 @@
     <ClCompile Include="Examples\Ex_EnvReflectAndRefract.cpp">
       <Filter>Examples</Filter>
     </ClCompile>
+    <ClCompile Include="Examples\Ex_Instancing.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Ex_PlanetInstancing.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.MD" />
@@ -360,6 +366,12 @@
       <Filter>Render\ShaderSources</Filter>
     </ClInclude>
     <ClInclude Include="Examples\Ex_EnvReflectAndRefract.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Ex_Instancing.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Ex_PlanetInstancing.h">
       <Filter>Examples</Filter>
     </ClInclude>
   </ItemGroup>

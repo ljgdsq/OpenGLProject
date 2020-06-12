@@ -6,6 +6,6 @@ class Ex_EnvReflectAndRefract:public Renderer
 public:
     class Skybox* skybox;
     class Cube* cube;
-
+    class Model* model;
 };
 

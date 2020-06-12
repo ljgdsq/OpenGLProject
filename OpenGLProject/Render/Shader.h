@@ -31,8 +31,12 @@ public:
     void SetInt(const std::string name, int value) ;
     void SetFloat(const std::string name, float value) ;
 
+    void SetVec2f(const std::string name, float x, float y);
+    void SetVec2f(const std::string name, glm::vec2 value);
+
     void SetVec3f(const std::string name, float x, float y, float z);
     void SetVec3f(const std::string name,glm::vec3 value);
+
     void SetVec4f(const std::string name, float x, float y, float z, float w);
     void SetVec4f(const std::string name, glm::vec4 value);
 

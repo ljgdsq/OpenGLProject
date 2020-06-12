@@ -1,9 +1,11 @@
 #include <iostream>
+#include <string>
 #include <math.h>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 #include "Utils/LogUtil.h"
+#include "Utils/GLEnvInfo.hpp"
 #include "Utils/StringUtil.h"
 #include "Base/World.h"
 #include "Base/Camera.hpp"
@@ -12,6 +14,11 @@
 
 #include "Examples/ExampleInit.h"
 #include "Shape/WorldIndicator.h"
+
+
+#define LOG_FPS
+const float show_fps_per_second = 1;
+float show_time = 0;
 using namespace std;
 
 World* world = World::GetInstance();
@@ -141,6 +148,9 @@ int main(int argc, char** argv)
     glEnable(GL_DEPTH_TEST);
     //glEnable(GL_CULL_FACE);
     //glCullFace(GL_BACK);
+
+    LogUtil::GetInstance()->Info(toString(GLEnvInfo::GetMaxVertexUniformComponent()));
+
     auto indicator = new WorldIndicator();
     while (!glfwWindowShouldClose(window))
     {
@@ -162,6 +172,18 @@ int main(int argc, char** argv)
 
         glfwSwapBuffers(window);
         glfwPollEvents();
+
+
+#ifdef LOG_FPS
+        show_time += deltaTime;
+        if (show_time>=show_fps_per_second)
+        {
+            show_time = 0;
+            LogUtil::GetInstance()->Info(toString(1.0f / deltaTime));
+        }
+#endif // LOG_FPS
+
+
     }
 
     glfwTerminate();

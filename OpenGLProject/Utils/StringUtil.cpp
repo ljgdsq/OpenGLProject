@@ -1,26 +1,38 @@
 #include "StringUtil.h"
 
-template<class T>
-std::string toString(T value)
-{
-    std::stringstream ssm;
-    ssm << value;
-    return ssm.str();
-}
+#define PUT_STRINGSTREAM(value)   \
+    std::stringstream ssm;       \
+ ssm << value;                \
+ return ssm.str();
 
 
-template<>
 std::string toString(const char* value)
 {
-    return std::string(value);
+    PUT_STRINGSTREAM(value)
 }
 
-template<>
+
 std::string toString(std::string value)
 {
     return value;
 }
-template<>
+std::string toString(int value)
+{
+    PUT_STRINGSTREAM(value)
+}
+std::string toString(float value)
+{
+    PUT_STRINGSTREAM(value)
+}
+std::string toString(double value)
+{
+    PUT_STRINGSTREAM(value)
+}
+std::string toString(bool value)
+{
+    PUT_STRINGSTREAM(value)
+}
+
 std::string toString(glm::vec3 value)
 {
     std::stringstream ssm;

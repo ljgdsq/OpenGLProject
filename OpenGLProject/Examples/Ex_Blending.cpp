@@ -201,7 +201,7 @@ void Ex_Blending::Draw()
     grassShader->SetInt("ourTexture", 2);
 
     vegetationMap.clear();
-    for (int i = 0; i < vegetation.size(); i++)
+    for (size_t i = 0; i < vegetation.size(); i++)
     {
         auto distance = glm::length(Camera::MainCamera->position - vegetation[i]);
         vegetationMap[distance] = vegetation[i];

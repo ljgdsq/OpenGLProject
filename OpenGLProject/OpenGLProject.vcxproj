@@ -156,10 +156,12 @@
     <ClCompile Include="Examples\Ex_DynamicPolygon.cpp" />
     <ClCompile Include="Examples\Ex_EnvReflectAndRefract.cpp" />
     <ClCompile Include="Examples\Ex_FrameBuffer.cpp" />
+    <ClCompile Include="Examples\Ex_Instancing.cpp" />
     <ClCompile Include="Examples\Ex_Lighting.cpp" />
     <ClCompile Include="Examples\Ex_Lighting_Cast.cpp" />
     <ClCompile Include="Examples\Ex_Lighting_Tex.cpp" />
     <ClCompile Include="Examples\Ex_ModelImport.cpp" />
+    <ClCompile Include="Examples\Ex_PlanetInstancing.cpp" />
     <ClCompile Include="Examples\Ex_Skybox.cpp" />
     <ClCompile Include="Examples\Ex_StencilTest.cpp" />
     <ClCompile Include="Examples\FaceBox.cpp" />
@@ -222,10 +224,12 @@
     <ClInclude Include="Examples\Ex_DynamicPolygon.h" />
     <ClInclude Include="Examples\Ex_EnvReflectAndRefract.h" />
     <ClInclude Include="Examples\Ex_FrameBuffer.h" />
+    <ClInclude Include="Examples\Ex_Instancing.h" />
     <ClInclude Include="Examples\Ex_Lighting.h" />
     <ClInclude Include="Examples\Ex_Lighting_Cast.h" />
     <ClInclude Include="Examples\Ex_Lighting_Tex.h" />
     <ClInclude Include="Examples\Ex_ModelImport.h" />
+    <ClInclude Include="Examples\Ex_PlanetInstancing.h" />
     <ClInclude Include="Examples\Ex_Skybox.h" />
     <ClInclude Include="Examples\Ex_StencilTest.h" />
     <ClInclude Include="Examples\FaceBox.h" />

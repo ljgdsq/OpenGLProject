@@ -6,11 +6,17 @@ private:
     GLEnvInfo(){}
 public:
    
-    int GetMaxVertexAttribCount() {
+   static int GetMaxVertexAttribCount() {
         int count;
         glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &count);
         return count;
     }
 
+   static int GetMaxVertexUniformComponent()
+    {
+        int count;
+        glGetIntegerv(GL_MAX_VERTEX_UNIFORM_COMPONENTS, &count);
+        return count;
+    }
 
 };
