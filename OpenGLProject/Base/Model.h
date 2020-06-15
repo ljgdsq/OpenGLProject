@@ -39,9 +39,14 @@ namespace GL3D
         vector<Texture> textures;
         Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures);
         void Draw(Shader shader);
+        void InstancingDraw(Shader shader,int count);
+        unsigned int GetVAO();
+        void BindTexture();
     private:
         unsigned int VAO, VBO, EBO;
         void setupMesh();
+        void SetShaderTexture(Shader shader);
+        bool needReBindTexture;
     };
 
     class Model
@@ -49,10 +54,12 @@ namespace GL3D
     public:
         Model(const char*path, bool gamma = false);
         void Draw(Shader shader);
-    private:
-        vector<Texture> textures_loaded;
-
         vector<Mesh> meshes;
+        vector<Texture> textures_loaded;
+        void InstancingDraw(Shader shader, int count);
+    private:
+
+
         string directory;
         bool gammaCorrection;
         void loadModel(string path);

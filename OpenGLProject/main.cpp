@@ -98,6 +98,8 @@ void mouse_scroll(GLFWwindow* window, double x, double y)
     //   LogUtil::GetInstance()->Info(toString(y));
 }
 
+
+
 int main(int argc, char** argv)
 {
     world->InitWorld(timer, nullptr, ResourceLoader::GetInstance(), camera);
@@ -150,6 +152,8 @@ int main(int argc, char** argv)
     //glCullFace(GL_BACK);
 
     LogUtil::GetInstance()->Info(toString(GLEnvInfo::GetMaxVertexUniformComponent()));
+
+
 
     auto indicator = new WorldIndicator();
     while (!glfwWindowShouldClose(window))

@@ -3,6 +3,7 @@
 Triangle::Triangle():Renderer(new Shader(vertex_shader_0,fragment_shader_0))
 {
     InitData();
+    
 }
 
 void Triangle::Draw()
