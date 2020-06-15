@@ -11,5 +11,8 @@ public:
     unsigned int texture;
 
     Size winSize;
+    unsigned int fbo;
+    unsigned int tempFBO;
+    class ScreenRenderer* screenRenderer;
 };
 

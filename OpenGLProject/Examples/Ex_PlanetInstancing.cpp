@@ -68,8 +68,7 @@ void Ex_PlanetInstancing::InitData()
     amount = MAX_ROCK;
 
     modelMatrices = new glm::mat4[amount];
-    srand(glfwGetTime());
-
+    srand((int)glfwGetTime());
     float radius = 50.0f;
     float offset = 2.5f;
     for (int i=0;i<amount;i++)
@@ -86,11 +85,12 @@ void Ex_PlanetInstancing::InitData()
         model = glm::translate(model, glm::vec3(x, y, z));
 
         // 2. 缩放：在 0.05 和 0.25f 之间缩放
-        float scale = (rand() % 20) / 100.0f + 0.05;
+        float scale = (rand() % 20) / 100.0f + 0.05f;
         model = glm::scale(model, glm::vec3(scale));
 
+
         // 3. 旋转：绕着一个（半）随机选择的旋转轴向量进行随机的旋转
-        float rotAngle = (rand() % 360);
+        float rotAngle =(float)(rand() % 360);
         model = glm::rotate(model, rotAngle, glm::vec3(0.4f, 0.6f, 0.8f));
         modelMatrices[i] = model;
     }
@@ -102,7 +102,7 @@ void Ex_PlanetInstancing::InitData()
 
     auto vec4Size = sizeof(glm::vec4);
 
-    for (int i=0;i<rock->meshes.size();i++)
+    for (size_t i=0;i<rock->meshes.size();i++)
     {
         unsigned int VAO = rock->meshes[i].GetVAO();
         glBindVertexArray(VAO);

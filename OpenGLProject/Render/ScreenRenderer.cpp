@@ -30,12 +30,13 @@ void ScreenRenderer::Draw()
 {
     if (texture!=-1)
     {
-        glDisable(GL_DEPTH_TEST);
-        glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+        glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
         glClear(GL_COLOR_BUFFER_BIT);
+        glDisable(GL_DEPTH_TEST);
 
         shader->Use();
         glBindVertexArray(VAO);
+        glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture);
         glDrawArrays(GL_TRIANGLES, 0, 6);
     }
@@ -125,7 +126,7 @@ void ScreenRenderer::InitShader()
         } 
 )";
 
-    shader = new Shader(screenVShader, screenGrayShader);
+    shader = new Shader(screenVShader, screenFShader);
     shader->Use();
     shader->SetInt("screenTexture", 0);
 }
