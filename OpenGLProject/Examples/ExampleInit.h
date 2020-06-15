@@ -28,6 +28,7 @@
 
 #include "Ex_Instancing.h"
 #include "Ex_PlanetInstancing.h"
+#include "Ex_AntiAlising.h"
 void InitExamples() {
   //ADD_EXAMPLE(Ex_DepthTest);
   //ADD_EXAMPLE(Ex_StencilTest);
@@ -37,6 +38,7 @@ void InitExamples() {
   //ADD_EXAMPLE(Ex_EnvReflectAndRefract);
   //ADD_EXAMPLE(Ex_DynamicPolygon);
   //ADD_EXAMPLE(Ex_Instancing);
-  ADD_EXAMPLE(Ex_PlanetInstancing);
+  //ADD_EXAMPLE(Ex_PlanetInstancing);
+  ADD_EXAMPLE(Ex_AntiAlising);
 
 }

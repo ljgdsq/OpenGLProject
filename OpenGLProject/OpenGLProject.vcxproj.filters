@@ -174,6 +174,12 @@
     <ClCompile Include="Examples\Ex_PlanetInstancing.cpp">
       <Filter>Examples</Filter>
     </ClCompile>
+    <ClCompile Include="Examples\Ex_AntiAlising.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\RenderTexture.cpp">
+      <Filter>Render</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.MD" />
@@ -205,6 +211,9 @@
       <Filter>Render\ShaderSources</Filter>
     </None>
     <None Include="Render\ShaderSources\vertex_pcolor_tex_mvp.vert">
+      <Filter>Render\ShaderSources</Filter>
+    </None>
+    <None Include="Render\ShaderSources\fragment_base_color_tex.frag">
       <Filter>Render\ShaderSources</Filter>
     </None>
   </ItemGroup>
@@ -373,6 +382,12 @@
     </ClInclude>
     <ClInclude Include="Examples\Ex_PlanetInstancing.h">
       <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Ex_AntiAlising.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Render\RenderTexture.h">
+      <Filter>Render</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

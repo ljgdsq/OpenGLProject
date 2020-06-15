@@ -16,3 +16,4 @@
 #include "fragment_base_tex.frag"
 
 #include "fragment_base_tex2.frag"
+#include "fragment_base_color_tex.frag"

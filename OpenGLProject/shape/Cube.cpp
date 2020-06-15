@@ -7,7 +7,7 @@ RENDERER_BASE_CONSTRUCTOR_IMPL(Cube)
 
 void Cube::InitData()
 {
-    shader->CreateShaderProgram(vertex_base_tex_mvp, fragment_base_tex);
+    shader->CreateShaderProgram(vertex_base_tex_mvp, fragment_base_color_tex);
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
     glBindVertexArray(VAO);
@@ -32,6 +32,8 @@ void Cube::InitData()
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, image->GetTexture());
 
+    color = glm::vec3(1.0f, 1.0f, 1.0f);
+
 }
 
 
@@ -41,6 +43,7 @@ void Cube::Draw()
     {
         shader->Use();
         shader->SetInt("ourTexture", 0);
+        shader->SetVec3f("ourColor", color);
         ScreenViewUtil::GetInstance()->SetUpShaderMVPMatrix(shader);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, image->GetTexture());
@@ -56,4 +59,11 @@ Cube::Cube(std::string imagePath)
 
     this->imagePath = imagePath;
     InitData();
+}
+
+void Cube::SetColor(glm::vec3 color)
+{
+    this->color = color;
+    shader->Use();
+    shader->SetVec3f("ourColor", color);
 }

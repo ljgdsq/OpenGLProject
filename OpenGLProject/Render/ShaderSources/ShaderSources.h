@@ -27,7 +27,9 @@ extern const char* vertex_base_tex_mvp;
 //包含一张纹理 sampler2D ourTexture 
 extern const char* fragment_base_tex;
 
-
+//包含一张纹理 颜色 sampler2D ourTexture vec3 ourColor
+extern const char* fragment_base_color_tex;
 
 //包含2张纹理 和一个混合比	float mixPercent;sampler2D texture1; sampler2D texture2;
 extern const char* fragment_base_tex2;
+
