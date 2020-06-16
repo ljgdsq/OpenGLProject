@@ -17,3 +17,8 @@
 ### Resource cache 
 ### freambuffer extension:draw depth buffer and stencil buffer
 ### extract shader data:use glBufferSubData let shader facility  send data by shader key world
+
+
+
+## Bugs 
+### model image cache type error ;the same texture no same type share tex1 type 

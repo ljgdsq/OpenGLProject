@@ -14,5 +14,6 @@ private:
 
     unsigned int textureColorbuffer;
     class ScreenRenderer* screen;
+    class RenderTexture* renderTexture;
 };
 

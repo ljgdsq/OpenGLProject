@@ -138,6 +138,7 @@
     <ClCompile Include="..\thirdpart\src\glad.c" />
     <ClCompile Include="Base\CompGlfwImpl\GLFWInputController.cpp" />
     <ClCompile Include="Base\CompGlfwImpl\GLFWTimer.cpp" />
+    <ClCompile Include="Base\Graphics.cpp" />
     <ClCompile Include="Base\Image.cpp" />
     <ClCompile Include="Base\Model.cpp" />
     <ClCompile Include="Base\ProjetConfig.hpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="Examples\Ex_Lighting_Tex.cpp" />
     <ClCompile Include="Examples\Ex_ModelImport.cpp" />
     <ClCompile Include="Examples\Ex_PlanetInstancing.cpp" />
+    <ClCompile Include="Examples\Ex_ShadowMapping.cpp" />
     <ClCompile Include="Examples\Ex_Skybox.cpp" />
     <ClCompile Include="Examples\Ex_StencilTest.cpp" />
     <ClCompile Include="Examples\FaceBox.cpp" />
@@ -203,6 +205,7 @@
     <ClInclude Include="Base\Camera.hpp" />
     <ClInclude Include="Base\CompGlfwImpl\GLFWInputController.h" />
     <ClInclude Include="Base\CompGlfwImpl\GLFWTimer.h" />
+    <ClInclude Include="Base\Graphics.h" />
     <ClInclude Include="Base\Image.h" />
     <ClInclude Include="Base\interface\ITimer.h" />
     <ClInclude Include="Base\Model.h" />
@@ -234,6 +237,7 @@
     <ClInclude Include="Examples\Ex_Lighting_Tex.h" />
     <ClInclude Include="Examples\Ex_ModelImport.h" />
     <ClInclude Include="Examples\Ex_PlanetInstancing.h" />
+    <ClInclude Include="Examples\Ex_ShadowMapping.h" />
     <ClInclude Include="Examples\Ex_Skybox.h" />
     <ClInclude Include="Examples\Ex_StencilTest.h" />
     <ClInclude Include="Examples\FaceBox.h" />

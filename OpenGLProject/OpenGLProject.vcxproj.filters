@@ -180,6 +180,12 @@
     <ClCompile Include="Render\RenderTexture.cpp">
       <Filter>Render</Filter>
     </ClCompile>
+    <ClCompile Include="Examples\Ex_ShadowMapping.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\Graphics.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.MD" />
@@ -388,6 +394,12 @@
     </ClInclude>
     <ClInclude Include="Render\RenderTexture.h">
       <Filter>Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Ex_ShadowMapping.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\Graphics.h">
+      <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

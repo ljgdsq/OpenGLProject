@@ -8,8 +8,8 @@ RENDERER_BASE_CONSTRUCTOR_IMPL(Ex_Instancing)
 void Ex_Instancing::InitData()
 {
     int maxCount = 100000;
-    xMaxCount = sqrt(maxCount);
-    yMaxCount = sqrt(maxCount);
+    xMaxCount =(int) sqrt(maxCount);
+    yMaxCount = (int)sqrt(maxCount);
 
     float quadVertices[] = {
         -0.05f / (xMaxCount / 10),  0.05f / (yMaxCount / 10),  1.0f, 0.0f, 0.0f,

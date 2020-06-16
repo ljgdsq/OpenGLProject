@@ -5,3 +5,4 @@
 #include "../Utils/LogUtil.h"
 #include "../Utils/ScreenViewUtil.h"
 #include "../Base/BaseStruct.hpp"
+#include "../Base/Graphics.h"

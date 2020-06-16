@@ -32,6 +32,7 @@ void ScreenRenderer::Draw()
     {
         glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
         glClear(GL_COLOR_BUFFER_BIT);
+        auto isEnable=glIsEnabled(GL_DEPTH_TEST);
         glDisable(GL_DEPTH_TEST);
 
         shader->Use();
@@ -39,6 +40,11 @@ void ScreenRenderer::Draw()
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texture);
         glDrawArrays(GL_TRIANGLES, 0, 6);
+
+        if (isEnable)
+        {
+            glEnable(GL_DEPTH_TEST);
+        }
     }
 }
 
