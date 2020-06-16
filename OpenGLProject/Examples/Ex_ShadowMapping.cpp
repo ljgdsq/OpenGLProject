@@ -9,27 +9,44 @@ RENDERER_BASE_CONSTRUCTOR_IMPL(Ex_ShadowMapping)
 void Ex_ShadowMapping::InitData()
 {
 
-
     auto winSize = ProjectConfig::GetInstance()->GetWindowSize();
     width = winSize.x;
     height = winSize.y;
-    const char* lightVShader=R"(
-        #version 330 core
-        layout (location = 0) in vec3 aPos;
+    const char* debugDrawVShader=R"(
+               #version 330 core
+            layout (location = 0) in vec3 aPos;
+            layout (location = 1) in vec2 aTexCoords;
 
-        uniform mat4 lightSpaceMatrix;
-        uniform mat4 model;
+            out vec2 TexCoords;
 
-        void main()
-        {
-            gl_Position = lightSpaceMatrix * model * vec4(aPos, 1.0);
-        }
+            void main()
+            {
+                TexCoords = aTexCoords;
+                gl_Position = vec4(aPos, 1.0);
+            }
 )";
-    const char* lightFShader=R"(
-        #version 330 core
+    const char* debugDrawFShader=R"(
+            #version 330 core
+        out vec4 FragColor;
+
+        in vec2 TexCoords;
+
+        uniform sampler2D depthMap;
+        uniform float near_plane;
+        uniform float far_plane;
+
+        // required when using a perspective projection matrix
+        float LinearizeDepth(float depth)
+        {
+            float z = depth * 2.0 - 1.0; // Back to NDC 
+            return (2.0 * near_plane * far_plane) / (far_plane + near_plane - z * (far_plane - near_plane));	
+        }
+
         void main()
         {             
-            // gl_FragDepth = gl_FragCoord.z;
+            float depthValue = texture(depthMap, TexCoords).r;
+            // FragColor = vec4(vec3(LinearizeDepth(depthValue) / far_plane), 1.0); // perspective
+            FragColor = vec4(vec3(depthValue), 1.0); // orthographic
         }
 )";
 
@@ -42,46 +59,122 @@ void Ex_ShadowMapping::InitData()
             // gl_FragDepth = gl_FragCoord.z;
         }
 )";
-    testShader = new Shader();
-    testShader->CreateShaderProgram(lightVShader, lightFShader2);
-    shader->CreateShaderProgram(lightVShader, lightFShader);
 
-    const char* debugDrawVShaderSource=R"(
+
+    const char* sceneVShader = R"(
         #version 330 core
         layout (location = 0) in vec3 aPos;
-        layout (location = 1) in vec2 aTexCoords;
-
+        layout (location = 1) in vec3 aNormal;
+        layout (location = 2) in vec2 aTexCoords;
         out vec2 TexCoords;
+        out VS_OUT {
+            vec3 FragPos;
+            vec3 Normal;
+            vec2 TexCoords;
+            vec4 FragPosLightSpace;
+        } vs_out;
+
+        uniform mat4 projection;
+        uniform mat4 view;
+        uniform mat4 model;
+        uniform mat4 lightSpaceMatrix;
 
         void main()
         {
-            TexCoords = aTexCoords;
-            gl_Position = vec4(aPos, 1.0);
+            vs_out.FragPos = vec3(model * vec4(aPos, 1.0));
+            vs_out.Normal = transpose(inverse(mat3(model))) * aNormal;
+            vs_out.TexCoords = aTexCoords;
+            vs_out.FragPosLightSpace = lightSpaceMatrix * vec4(vs_out.FragPos, 1.0);
+            gl_Position = projection * view * model * vec4(aPos, 1.0);
         }
 )";
 
-    const char* debugDrawFShaderSource = R"(
+    const char* sceneFShader = R"(
         #version 330 core
         out vec4 FragColor;
-        in vec2 TexCoords;
-        uniform sampler2D depthMap;
-        uniform float near_plane;
-        uniform float far_plane;
-        // required when using a perspective projection matrix
-        float LinearizeDepth(float depth)
+
+        in VS_OUT {
+            vec3 FragPos;
+            vec3 Normal;
+            vec2 TexCoords;
+            vec4 FragPosLightSpace;
+        } fs_in;
+
+        uniform sampler2D diffuseTexture;
+        uniform sampler2D shadowMap;
+
+        uniform vec3 lightPos;
+        uniform vec3 viewPos;
+        float bias;
+        float ShadowCalculation(vec4 fragPosLightSpace)
         {
-            float z = depth * 2.0 - 1.0; // Back to NDC 
-            return (2.0 * near_plane * far_plane) / (far_plane + near_plane - z * (far_plane - near_plane));	
+            // perform perspective divide
+            vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
+            // transform to [0,1] range
+            projCoords = projCoords * 0.5 + 0.5;
+            // get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
+            float closestDepth = texture(shadowMap, projCoords.xy).r; 
+            // get depth of current fragment from light's perspective
+            float currentDepth = projCoords.z;
+            // check whether current frag pos is in shadow
+            float shadow = currentDepth-bias > closestDepth  ? 1.0 : 0.0;
+
+            return shadow;
         }
+
         void main()
-        {             
-            float depthValue = texture(depthMap, TexCoords).r;
-            // FragColor = vec4(vec3(LinearizeDepth(depthValue) / far_plane), 1.0); // perspective
-            FragColor = vec4(vec3(depthValue), 1.0); // orthographic
+        {           
+            vec3 color = texture(diffuseTexture, fs_in.TexCoords).rgb;
+            vec3 normal = normalize(fs_in.Normal);
+            vec3 lightColor = vec3(0.3);
+            // ambient
+            vec3 ambient = 0.3 * color;
+            // diffuse
+            vec3 lightDir = normalize(lightPos - fs_in.FragPos);
+            float diff = max(dot(lightDir, normal), 0.0);
+            vec3 diffuse = diff * lightColor;
+            // specular
+            vec3 viewDir = normalize(viewPos - fs_in.FragPos);
+            vec3 reflectDir = reflect(-lightDir, normal);
+            float spec = 0.0;
+            vec3 halfwayDir = normalize(lightDir + viewDir);  
+            spec = pow(max(dot(normal, halfwayDir), 0.0), 64.0);
+            vec3 specular = spec * lightColor;    
+           
+            bias = max(0.05 * (1.0 - dot(normal, lightDir)), 0.005);
+           // calculate shadow
+            float shadow = ShadowCalculation(fs_in.FragPosLightSpace);                      
+            vec3 lighting = (ambient + (1.0 - shadow) * (diffuse + specular)) * color;    
+    
+            FragColor = vec4(lighting, 1.0);
+        }
+
+)";
+
+    shader->CreateShaderProgram(sceneVShader, sceneFShader);
+
+    const char* simpleDepthVShaderSource=R"(
+          #version 330 core
+        layout (location = 0) in vec3 aPos;
+
+        uniform mat4 lightSpaceMatrix;
+        uniform mat4 model;
+
+        void main()
+        {
+            gl_Position = lightSpaceMatrix * model * vec4(aPos, 1.0);
         }
 )";
 
-    debugDrawShader = new Shader(debugDrawVShaderSource, debugDrawFShaderSource);
+    const char* simpleDepthFShaderSource = R"(
+         #version 330 core
+        void main()
+        {             
+            // gl_FragDepth = gl_FragCoord.z;
+        }
+)";
+
+    simpleDepthShader = new Shader(simpleDepthVShaderSource, simpleDepthFShaderSource);
     glGenFramebuffers(1, &depthMapFBO);
     glGenTextures(1, &depthMapTexture);
     glBindTexture(GL_TEXTURE_2D, depthMapTexture);
@@ -126,8 +219,8 @@ void Ex_ShadowMapping::InitData()
 
     woodTexture = ResourceLoader::GetInstance()->LoadImage("wood.png")->GetTexture();
 
-    debugDrawShader->Use();
-    debugDrawShader->SetInt("depthMap", 0);
+    simpleDepthShader->Use();
+    simpleDepthShader->SetInt("depthMap", 0);
     lightPos=glm::vec3(-2.0f, 4.0f, -1.0f);
     
     cubeVAO = 0;
@@ -135,10 +228,13 @@ void Ex_ShadowMapping::InitData()
     glEnable(GL_DEPTH_TEST);
 
 
-    renderTexture = new RenderTexture(width, height);
-    screenRenderer = new ScreenRenderer();
-    screenRenderer->InitShader();
-    screenRenderer->SetTexture(renderTexture->texture);
+    shader->Use();
+    shader->SetInt("diffuseTexture", 0);
+    shader->SetInt("shadowMap", 1);
+
+    debugDepthQuad = new Shader(debugDrawVShader,debugDrawFShader);
+    debugDepthQuad->Use();
+    debugDepthQuad->SetInt("depthMap", 0);
 }
 
 void Ex_ShadowMapping::Draw()
@@ -153,8 +249,8 @@ void Ex_ShadowMapping::Draw()
     lightView = glm::lookAt(lightPos, glm::vec3(0.0f), glm::vec3(0.0, 1.0, 0.0));
     lightSpaceMatrix = lightProjection * lightView;
 
-    shader->Use();
-    shader->SetMat4f("lightSpaceMatrix", lightSpaceMatrix);
+    simpleDepthShader->Use();
+    simpleDepthShader->SetMat4f("lightSpaceMatrix", lightSpaceMatrix);
 
     glViewport(0, 0, shadowWidth, shadowHeight);
     glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
@@ -162,19 +258,30 @@ void Ex_ShadowMapping::Draw()
     glClear(GL_DEPTH_BUFFER_BIT);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, woodTexture);
-    RenderScene(testShader);
+    RenderScene(simpleDepthShader);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
     glViewport(0, 0, width, height);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    debugDrawShader->Use();
-    debugDrawShader->SetFloat("near_plane", near_plane);
-    debugDrawShader->SetFloat("far_plane", far_plane);
+    shader->Use();
+    ScreenViewUtil::GetInstance()->SetUpShaderVPMatrix(shader);
 
+    shader->SetVec3f("viewPos", Camera::MainCamera->position);
+    shader->SetVec3f("lightPos", lightPos);
+    shader->SetMat4f("lightSpaceMatrix", lightSpaceMatrix);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, woodTexture);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, depthMapTexture);
+    RenderScene(shader);
+
+
+    debugDepthQuad->Use();
+    debugDepthQuad->SetFloat("near_plane", near_plane);
+    debugDepthQuad->SetFloat("far_plane", far_plane);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, depthMapTexture);
-    DrawQuad();
 }
 
 void Ex_ShadowMapping::RenderScene(Shader* shader)

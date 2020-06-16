@@ -4,10 +4,8 @@ class Ex_ShadowMapping:public Renderer
 {
     RENDERER_BASE_DECLARE(Ex_ShadowMapping)
 private:
-    class Shader* debugDrawShader;
-    class Shader* testShader;
-    class RenderTexture* renderTexture;
-    class ScreenRenderer* screenRenderer;
+    class Shader* simpleDepthShader;
+    class Shader* debugDepthQuad;
 
     unsigned int planeVAO,planeVBO;
     unsigned int quadVAO;
