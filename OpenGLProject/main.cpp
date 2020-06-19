@@ -62,8 +62,8 @@ void processInput(GLFWwindow* window)
     if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
     {
         isKeyDown = true;
-        // LogUtil::GetInstance()->Info(toString(timer->IsPaused()));
     }
+
     if (glfwGetKey(window, GLFW_KEY_P) == GLFW_RELEASE && isKeyDown)
     {
         isKeyDown = false;
@@ -71,7 +71,28 @@ void processInput(GLFWwindow* window)
         // LogUtil::GetInstance()->Info(toString(timer->IsPaused()));
     }
 
-    // LogUtil::GetInstance()->Info(toString(camera->position));
+    if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS)
+    {
+        camera->isFastMode = true;
+    }
+    else
+    {
+        camera->isFastMode = false;
+    }
+
+
+    /*   if (glfwGetKey(window, GLFW_KEY_M) == GLFW_RELEASE )
+       {
+            LogUtil::GetInstance()->Info(toString("M release"));
+       }
+       if (glfwGetKey(window, GLFW_KEY_M) == GLFW_REPEAT)
+       {
+           LogUtil::GetInstance()->Info(toString("M repeat------------------------"));
+       }
+       if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
+       {
+           LogUtil::GetInstance()->Info(toString("M press"));
+       }*/
 }
 
 void mouse_callback(GLFWwindow* window, double x, double y)
@@ -117,7 +138,7 @@ int main(int argc, char** argv)
 
 
 
-    glfwInit();
+    glfwInit();//glGetError will set a error flag GL_INVALID_ENUM  eliminate this.
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -150,17 +171,19 @@ int main(int argc, char** argv)
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetScrollCallback(window, mouse_scroll);
-    
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1); //禁用纹理4字节对齐读取限制 
+  //  glfwSetKeyCallback(window, processInput);
+
+    glGetError(); //glfwInit  
     InitExamples();
     Renderer* render =ExampleFactory::GetLastExample();
     glEnable(GL_DEPTH_TEST);
     //glEnable(GL_CULL_FACE);
     //glCullFace(GL_BACK);
-
     LogUtil::GetInstance()->Info(toString(GLEnvInfo::GetMaxVertexUniformComponent()));
-
-
-
+    int ali;
+   glGetIntegerv(GL_UNPACK_ALIGNMENT,&ali);
+   LOGI(ali);
     auto indicator = new WorldIndicator();
     while (!glfwWindowShouldClose(window))
     {
@@ -182,7 +205,7 @@ int main(int argc, char** argv)
 
         glfwSwapBuffers(window);
         glfwPollEvents();
-
+       
 
 #ifdef LOG_FPS
         show_time += deltaTime;

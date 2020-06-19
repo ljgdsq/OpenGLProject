@@ -39,7 +39,7 @@ public:
     float mouseSensitivity;
     float zoom;
     bool inverseY;
-
+    bool isFastMode;
 public:
     static Camera* MainCamera;
 public:
@@ -52,6 +52,7 @@ public:
         this->yaw = yaw;
         this->pitch = pitch;
         this->inverseY = false;
+        this->isFastMode = false;
         UpdateCamera();
     }
     // constructor with scalar values
@@ -63,6 +64,7 @@ public:
         this->yaw = yaw;
         this->pitch = pitch;
         this->inverseY = false;
+        this->isFastMode = false;
         UpdateCamera();
     }
     glm::mat4 GetViewMatrix()
@@ -74,6 +76,10 @@ public:
     void ProcessKeyboard(Camera_Movement direction,float deltaTime)
     {
         float velocity = movementSpeed * deltaTime;
+        if (isFastMode)
+        {
+            velocity *= 5;
+        }
         if (direction==Camera_Movement::FORWARD)
         {
             position += front * velocity;

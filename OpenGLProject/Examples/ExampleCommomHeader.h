@@ -3,6 +3,7 @@
 #include "../Render/Renderer.h"
 #include "../Base/Camera.hpp"
 #include "../Utils/LogUtil.h"
+#include "../Utils/FileUtil.h"
 #include "../Utils/ScreenViewUtil.h"
 #include "../Base/BaseStruct.hpp"
 #include "../Base/Graphics.h"

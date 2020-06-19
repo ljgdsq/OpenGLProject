@@ -30,6 +30,7 @@
 #include "Ex_PlanetInstancing.h"
 #include "Ex_AntiAlising.h"
 #include "Ex_ShadowMapping.h"
+#include "Ex_Text.h"
 void InitExamples() {
   //ADD_EXAMPLE(Ex_DepthTest);
   //ADD_EXAMPLE(Ex_StencilTest);
@@ -42,5 +43,6 @@ void InitExamples() {
   //ADD_EXAMPLE(Ex_AntiAlising);
   ADD_EXAMPLE(Ex_FrameBuffer);
   ADD_EXAMPLE(Ex_ShadowMapping);
+  ADD_EXAMPLE(Ex_Text);
 
 }

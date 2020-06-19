@@ -8,5 +8,7 @@ public:
     std::string LoadStringFromProjectResource(std::string name);
     std::string GetResourceFullPath(std::string name);
     std::string GetResourceImageFullPath(std::string name);
+    std::string GetResourceFontFullPath(std::string name);
+   
 };
 

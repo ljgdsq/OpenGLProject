@@ -232,7 +232,7 @@ void Ex_ShadowMapping::InitData()
     shader->SetInt("diffuseTexture", 0);
     shader->SetInt("shadowMap", 1);
 
-    debugDepthQuad = new Shader(debugDrawVShader,debugDrawFShader);
+     debugDepthQuad = new Shader(debugDrawVShader,debugDrawFShader);
     debugDepthQuad->Use();
     debugDepthQuad->SetInt("depthMap", 0);
 }
@@ -245,7 +245,8 @@ void Ex_ShadowMapping::Draw()
     glm::mat4 lightProjection, lightView;
     glm::mat4 lightSpaceMatrix;
     float near_plane = 1.0f, far_plane = 7.5f;
-    lightProjection = glm::ortho(-10.0f, 10.0f, -10.0f, 10.0f, near_plane, far_plane);
+    int osize = 20;
+    lightProjection = glm::ortho(-1.0f*osize, 1.0f * osize, -1.0f * osize, 1.0f * osize, near_plane, far_plane);
     lightView = glm::lookAt(lightPos, glm::vec3(0.0f), glm::vec3(0.0, 1.0, 0.0));
     lightSpaceMatrix = lightProjection * lightView;
 
@@ -256,8 +257,6 @@ void Ex_ShadowMapping::Draw()
     glBindFramebuffer(GL_FRAMEBUFFER, depthMapFBO);
 
     glClear(GL_DEPTH_BUFFER_BIT);
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, woodTexture);
     RenderScene(simpleDepthShader);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
@@ -282,6 +281,7 @@ void Ex_ShadowMapping::Draw()
     debugDepthQuad->SetFloat("far_plane", far_plane);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, depthMapTexture);
+    DrawQuad();
 }
 
 void Ex_ShadowMapping::RenderScene(Shader* shader)

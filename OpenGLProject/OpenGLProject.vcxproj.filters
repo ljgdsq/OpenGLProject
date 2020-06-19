@@ -186,6 +186,15 @@
     <ClCompile Include="Base\Graphics.cpp">
       <Filter>Base</Filter>
     </ClCompile>
+    <ClCompile Include="Utils\GLDebug.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Examples\Ex_Text.cpp">
+      <Filter>Examples</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\Text.cpp">
+      <Filter>Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.MD" />
@@ -399,6 +408,15 @@
       <Filter>Examples</Filter>
     </ClInclude>
     <ClInclude Include="Base\Graphics.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\GLDebug.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Examples\Ex_Text.h">
+      <Filter>Examples</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\Text.h">
       <Filter>Base</Filter>
     </ClInclude>
   </ItemGroup>

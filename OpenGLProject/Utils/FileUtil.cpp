@@ -48,3 +48,15 @@ std::string FileUtil::GetResourceImageFullPath(std::string name)
         return FileUtil::GetInstance()->GetResourceFullPath("images/" + name);
     }
 }
+
+std::string FileUtil::GetResourceFontFullPath(std::string name)
+{
+    if (name.find("fonts") != name.npos)
+    {
+        return FileUtil::GetInstance()->GetResourceFullPath(name);
+    }
+    else
+    {
+        return FileUtil::GetInstance()->GetResourceFullPath("fonts/" + name);
+    }
+}

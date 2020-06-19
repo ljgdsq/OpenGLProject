@@ -22,3 +22,10 @@
 
 ## Bugs 
 ### model image cache type error ;the same texture no same type share tex1 type 
+
+
+
+## help tools 
+### gDebugger
+### RenderDoc
+### NVIDIA Nsight vs plugin

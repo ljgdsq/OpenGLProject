@@ -2,7 +2,7 @@
 #include <string>
 
 #include "../Base/Singleton.h"
-
+#include "../Utils/StringUtil.h"
 class LogUtil:public Singleton<LogUtil>
 {
 private:
@@ -37,6 +37,6 @@ private:
      std::string GetLevelSring(LogLevel level);
 };
 
-#define LOGE(msg)  LogUtil::GetInstance()->Error(msg);
-#define LOGW(msg)  LogUtil::GetInstance()->Warn(msg);
-#define LOGI(msg)  LogUtil::GetInstance()->Info(msg);
+#define LOGE(msg)  LogUtil::GetInstance()->Error( toString(__FILE__)+toString(" : "+toString(__LINE__)+toString(" \n"))+toString(msg));
+#define LOGW(msg)  LogUtil::GetInstance()->Warn( toString(__FILE__)+toString(" : "+toString(__LINE__)+toString(" \n"))+toString(msg));
+#define LOGI(msg)  LogUtil::GetInstance()->Info( toString(__FILE__)+toString(" : "+toString(__LINE__)+toString(" \n"))+toString(msg));

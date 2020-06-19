@@ -69,7 +69,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ExecutablePath>..\thirdpart\freetype;$(ExecutablePath)</ExecutablePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -80,8 +82,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>../thirdpart/lib-vc2019;E:\gitrepo\OpenGLProject\thirdpart\lib-vc2019\assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;assimp-vc140-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../thirdpart/lib-vc2019;../thirdpart/freetype;../thirdpart/lib-vc2019/assimp;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;assimp-vc140-mtd.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy "$(ProjectDir)..\Resources" "$(OutDir)\Resources" /D /E /I /F /Y</Command>
@@ -143,6 +145,7 @@
     <ClCompile Include="Base\Model.cpp" />
     <ClCompile Include="Base\ProjetConfig.hpp" />
     <ClCompile Include="Base\ResourceLoader.cpp" />
+    <ClCompile Include="Base\Text.cpp" />
     <ClCompile Include="Base\World.cpp" />
     <ClCompile Include="Examples\ColorTriangle.cpp" />
     <ClCompile Include="Examples\Ex1_1.cpp" />
@@ -167,6 +170,7 @@
     <ClCompile Include="Examples\Ex_ShadowMapping.cpp" />
     <ClCompile Include="Examples\Ex_Skybox.cpp" />
     <ClCompile Include="Examples\Ex_StencilTest.cpp" />
+    <ClCompile Include="Examples\Ex_Text.cpp" />
     <ClCompile Include="Examples\FaceBox.cpp" />
     <ClCompile Include="Examples\Triangle.cpp" />
     <ClCompile Include="main.cpp" />
@@ -180,6 +184,7 @@
     <ClCompile Include="Shape\Plane.cpp" />
     <ClCompile Include="Shape\WorldIndicator.cpp" />
     <ClCompile Include="Utils\FileUtil.cpp" />
+    <ClCompile Include="Utils\GLDebug.cpp" />
     <ClCompile Include="Utils\InIReader.cpp" />
     <ClCompile Include="Utils\LogUtil.cpp" />
     <ClCompile Include="Utils\ScreenViewUtil.cpp" />
@@ -212,6 +217,7 @@
     <ClInclude Include="Base\ProjetInit.hpp" />
     <ClInclude Include="Base\ResourceLoader.h" />
     <ClInclude Include="Base\Singleton.h" />
+    <ClInclude Include="Base\Text.h" />
     <ClInclude Include="Base\World.h" />
     <ClInclude Include="CommonData.h" />
     <ClInclude Include="CommonHeader.h" />
@@ -240,6 +246,7 @@
     <ClInclude Include="Examples\Ex_ShadowMapping.h" />
     <ClInclude Include="Examples\Ex_Skybox.h" />
     <ClInclude Include="Examples\Ex_StencilTest.h" />
+    <ClInclude Include="Examples\Ex_Text.h" />
     <ClInclude Include="Examples\FaceBox.h" />
     <ClInclude Include="Examples\Triangle.h" />
     <ClInclude Include="GLEnvHeader.h" />
@@ -254,6 +261,7 @@
     <ClInclude Include="Shape\Plane.h" />
     <ClInclude Include="Shape\WorldIndicator.h" />
     <ClInclude Include="Utils\FileUtil.h" />
+    <ClInclude Include="Utils\GLDebug.h" />
     <ClInclude Include="Utils\GLEnvInfo.hpp" />
     <ClInclude Include="Utils\InIReader.h" />
     <ClInclude Include="Utils\LogUtil.h" />
